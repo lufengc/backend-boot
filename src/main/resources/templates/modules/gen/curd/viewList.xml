@@ -26,9 +26,9 @@
             <div class="row">
                 <div class="col-sm-12">
                     <form:form id="searchForm" modelAttribute="${className}" action="${r"${ctx}"}/${urlPrefix}/" method="post" class="form-inline">
-                        <input id="pageNo" name="pageNo" type="hidden" value="${r"${page.pageNum}"}"/>
-                        <input id="pageSize" name="pageSize" type="hidden" value="${r"${page.pageSize}"}"/>
-                        <table:sortColumn id="orderBy" name="orderBy" value="${r"${clsssName.orderBy}"}" callback="sortOrRefresh();"/><!-- 支持排序 -->
+                        <input id="pageNum" name="pageNum" type="hidden" value="${"${"}${className}.pageNum${"}"}"/>
+                        <input id="pageSize" name="pageSize" type="hidden" value="${"${"}${className}.pageSize${"}"}"/>
+                        <table:sortColumn id="orderBy" name="orderBy" value="${"${"}${className}.orderBy${"}"}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                         <div class="form-group">
 					<#list table.columnList as c>
 						<#if c.isQuery?? && c.isQuery == "1">
