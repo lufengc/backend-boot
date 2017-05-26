@@ -52,9 +52,6 @@ public class Article extends DataEntity<Article> {
 
     public Article() {
         super();
-        this.weight = 0;
-        this.hits = 0;
-        this.posid = "";
     }
 
     public Article(String id) {

@@ -1,3 +1,102 @@
+server:
+  port: 9999
+  address: localhost
+  jsp-servlet:
+    init-parameters:
+      development: true
+logging:
+  file: logs/backend-boot.log
+  level:
+    root: info
+    com.bdfint.backend: debug
+
+druid:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/backend-boot?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    initialSize: 1
+    minIdle: 1
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat
+    monitor:
+      allow: 127.0.0.1
+      deny:
+      loginUsername: admin
+      loginPassword: admin
+
 spring:
-  profiles:
-    active: dev
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  redis:
+    key-prefix: backend-boot
+    host: localhost
+    port: 6379
+    password:
+    timeout: 0
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+    cluster:
+      max-redirects: 5
+      #nodes: 10.82.12.30:6379,10.82.12.30:6479,10.82.12.31:6379
+      nodes: 127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005,127.0.0.1:7006
+
+# MyBatis
+mybatis:
+  type-aliases-package: com.bdfint.backend.modules
+  configuration:
+    map-underscore-to-camel-case: true
+
+mapper:
+  mappers:
+      - com.bdfint.backend.framework.common.CommonMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+
+
+#文件上传路径 空为系统默认配置
+fileUploadPath:
+#文件服务器地址 空为系统默认配置
+fileAccessPath:
+#静态文件后缀
+staticFileSuffix: .css,.js,.png,.jpg,.gif,.jpeg,.bmp,.ico,.swf,.psd,.htc,.htm,.html,.crx,.xpi,.exe,.ipa,.apk
+#动态文件后缀
+urlSuffix: .html
+#管理基础路径
+adminPath: /a
+#前端基础路径
+frontPath: /f
+#踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
+userKickoutAfter: false
+#同一个帐号最大会话数 默认1
+userMaxSession: 2
+#是否不允许刷新主页，不允许情况下，刷新主页会导致重新登录
+notAllowRefreshIndex: false
+#是否允许启动清空redis缓存，允许情况下，项目启动会清空所有缓存
+allowStartupEmptyCache: false
+#单点登录CAS设置
+casServerUrl: http://127.0.0.1:8180/cas
+casProjectUrl: http://127.0.0.1:8080/a

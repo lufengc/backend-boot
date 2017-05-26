@@ -73,10 +73,10 @@ public class DruidAutoConfiguration {
         ServletRegistrationBean reg = new ServletRegistrationBean();
         reg.setServlet(new StatViewServlet());
         reg.addUrlMappings("/druid/*");
-        reg.addInitParameter("allow", properties.getStatView().getAllow());
-        reg.addInitParameter("deny", properties.getStatView().getDeny());
-        reg.addInitParameter("loginUsername", properties.getStatView().getLoginUsername());
-        reg.addInitParameter("loginPassword", properties.getStatView().getLoginPassword());
+        reg.addInitParameter("allow", properties.getMonitor().getAllow());
+        reg.addInitParameter("deny", properties.getMonitor().getDeny());
+        reg.addInitParameter("loginUsername", properties.getMonitor().getLoginUsername());
+        reg.addInitParameter("loginPassword", properties.getMonitor().getLoginPassword());
         return reg;
     }
 

@@ -29,7 +29,7 @@ public class DruidProperties {
     private boolean poolPreparedStatements;
     private int maxPoolPreparedStatementPerConnectionSize;
     private String filters;
-    private DruidProperties.StatView statView;
+    private DruidProperties.Monitor monitor;
 
     public String getUrl() {
         return url;
@@ -168,22 +168,19 @@ public class DruidProperties {
         this.filters = filters;
     }
 
-    public StatView getStatView() {
-        return statView;
+    public Monitor getMonitor() {
+        return monitor;
     }
 
-    public void setStatView(StatView statView) {
-        this.statView = statView;
+    public void setMonitor(Monitor monitor) {
+        this.monitor = monitor;
     }
 
-    public static class StatView {
+    public static class Monitor {
         private String allow;
         private String deny;
         private String loginUsername;
         private String loginPassword;
-
-        public StatView() {
-        }
 
         public String getAllow() {
             return allow;
