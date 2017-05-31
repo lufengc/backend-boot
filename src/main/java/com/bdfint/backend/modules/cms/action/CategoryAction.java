@@ -34,7 +34,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 栏目Action
@@ -44,7 +43,7 @@ import java.util.Objects;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/category")
-public class CategoryAction extends BaseAction<Category> {
+public class CategoryAction extends BaseAction {
 
     @Autowired
     private CategoryService categoryService;
@@ -61,7 +60,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param id 主键
      * @return Category
      */
-    @Override
     @ModelAttribute
     public Category get(@RequestParam(required = false) String id) throws Exception {
         if (StringUtils.isNotEmpty(id)) {
@@ -80,7 +78,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param response HttpServletResponse
      * @return view
      */
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("cms:category:view")
     public String list(Model model, Category object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -99,7 +96,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("cms:category:view")
     public String form(Model model, Category object) throws Exception {
@@ -152,7 +148,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param redirectAttributes RedirectAttributes
      * @return ModelAndView
      */
-    @Override
     protected String save(Model model, Category object, RedirectAttributes redirectAttributes) throws Exception {
         if (!beanValidator(model, object)) {
             return form(model, object);
@@ -169,7 +164,6 @@ public class CategoryAction extends BaseAction<Category> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "delete")
     public String delete(Model model, Category object, Param param, RedirectAttributes redirectAttributes) throws Exception {
         if (Category.isRoot(object.getId())) {

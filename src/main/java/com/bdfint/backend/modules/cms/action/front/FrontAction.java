@@ -4,8 +4,8 @@
 
 package com.bdfint.backend.modules.cms.action.front;
 
+import com.bdfint.backend.framework.common.BaseAction;
 import com.bdfint.backend.framework.common.BaseEntity;
-import com.bdfint.backend.framework.common.BaseFrontAction;
 import com.bdfint.backend.framework.util.UserAgentUtils;
 import com.bdfint.backend.modules.cms.bean.Article;
 import com.bdfint.backend.modules.cms.bean.ArticleData;
@@ -35,7 +35,7 @@ import java.util.Objects;
  */
 @Controller
 @RequestMapping(value = "${frontPath}")
-public class FrontAction extends BaseFrontAction {
+public class FrontAction extends BaseAction {
 
     @Autowired
     private ArticleService articleService;

@@ -34,7 +34,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/guestbook")
-public class GuestbookAction extends BaseAction<Guestbook> {
+public class GuestbookAction extends BaseAction {
 
     @Autowired
     private GuestbookService guestbookService;
@@ -45,7 +45,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param id ID
      * @return Guestbook
      */
-    @Override
     @ModelAttribute
     public Guestbook get(@RequestParam(required = false) String id) throws Exception {
         if (StringUtils.isNotEmpty(id)) {
@@ -63,7 +62,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param request  request
      * @param response @return view
      */
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("cms:guestbook:view")
     public String list(Model model, Guestbook object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -92,7 +90,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("cms:guestbook:edit")
     public String form(Model model, Guestbook object) throws Exception {
@@ -106,7 +103,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("cms:guestbook:edit")
     protected String save(Model model, Guestbook object, RedirectAttributes redirectAttributes) throws Exception {
@@ -130,7 +126,6 @@ public class GuestbookAction extends BaseAction<Guestbook> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("cms:guestbook:edit")
     public String delete(Model model, Guestbook object, Param param, RedirectAttributes redirectAttributes) throws Exception {

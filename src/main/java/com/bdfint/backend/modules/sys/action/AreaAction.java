@@ -34,13 +34,12 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/area")
-public class AreaAction extends BaseAction<Area> {
+public class AreaAction extends BaseAction {
 
     @Autowired
     private AreaService areaService;
 
 
-    @Override
     @ModelAttribute
     protected Area get(@RequestParam(required = false) String id) throws Exception {
         if (StringUtils.isNotEmpty(id)) {
@@ -50,7 +49,6 @@ public class AreaAction extends BaseAction<Area> {
         }
     }
 
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("sys:area:view")
     protected String list(Model model, Area object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -58,7 +56,6 @@ public class AreaAction extends BaseAction<Area> {
         return "modules/sys/areaList";
     }
 
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("sys:area:view")
     protected String form(Model model, Area area) throws Exception {
@@ -70,7 +67,6 @@ public class AreaAction extends BaseAction<Area> {
         return "modules/sys/areaForm";
     }
 
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("sys:area:edit")
     protected String save(Model model, Area area, RedirectAttributes redirectAttributes) throws Exception {
@@ -82,7 +78,6 @@ public class AreaAction extends BaseAction<Area> {
         return "redirect:" + adminPath + "/sys/area/";
     }
 
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("sys:area:edit")
     protected String delete(Model model, Area object, Param param, RedirectAttributes redirectAttributes) throws Exception {

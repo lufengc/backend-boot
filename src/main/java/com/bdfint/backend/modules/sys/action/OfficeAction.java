@@ -40,14 +40,13 @@ import java.util.Objects;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/office")
-public class OfficeAction extends BaseAction<Office> {
+public class OfficeAction extends BaseAction {
 
     @Autowired
     private OfficeService officeService;
     @Autowired
     private AreaService areaService;
 
-    @Override
     @ModelAttribute
     public Office get(@RequestParam(required = false) String id) throws Exception {
         if (StringUtils.isNotBlank(id)) {
@@ -77,7 +76,6 @@ public class OfficeAction extends BaseAction<Office> {
      * @param response HttpServletRequest
      * @return String
      */
-    @Override
     @RequestMapping(value = "list")
     @RequiresPermissions("sys:office:view")
     public String list(Model model, Office office, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -96,7 +94,6 @@ public class OfficeAction extends BaseAction<Office> {
      * @param office Office
      * @return String
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("sys:office:view")
     public String form(Model model, Office office) throws Exception {
@@ -154,7 +151,6 @@ public class OfficeAction extends BaseAction<Office> {
      * @param redirectAttributes RedirectAttributes
      * @return String
      */
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("sys:office:edit")
     public String save(Model model, Office office, RedirectAttributes redirectAttributes) throws Exception {
@@ -188,7 +184,6 @@ public class OfficeAction extends BaseAction<Office> {
      * @param redirectAttributes RedirectAttributes
      * @return String
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("sys:office:edit")
     public String delete(Model model, Office office, Param param, RedirectAttributes redirectAttributes) throws Exception {

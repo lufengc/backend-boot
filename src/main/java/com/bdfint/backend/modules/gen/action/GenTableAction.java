@@ -34,7 +34,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/gen/genTable")
-public class GenTableAction extends BaseAction<GenTable> {
+public class GenTableAction extends BaseAction {
 
     @Autowired
     private GenTableService genTableService;
@@ -48,7 +48,6 @@ public class GenTableAction extends BaseAction<GenTable> {
         }
     }
 
-    @Override
     @RequestMapping(value = {"list", ""})
     public String list(Model model, GenTable genTable, HttpServletRequest request, HttpServletResponse response) throws Exception {
         PageInfo<GenTable> page = genTableService.getPage(genTable, new Example(GenTable.class));
@@ -56,7 +55,6 @@ public class GenTableAction extends BaseAction<GenTable> {
         return "modules/gen/genTableList";
     }
 
-    @Override
     @RequestMapping(value = "form")
     public String form(Model model, GenTable genTable) {
         // 获取物理表列表
@@ -74,7 +72,6 @@ public class GenTableAction extends BaseAction<GenTable> {
         return "modules/gen/genTableForm";
     }
 
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("gen:genTable:edit")
     public String save(Model model, GenTable genTable, RedirectAttributes redirectAttributes) throws Exception {
@@ -92,7 +89,6 @@ public class GenTableAction extends BaseAction<GenTable> {
         return "redirect:" + adminPath + "/gen/genTable/list?repage";
     }
 
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("gen:genTable:edit")
     public String delete(Model model, GenTable genTable, Param param, RedirectAttributes redirectAttributes) throws Exception {

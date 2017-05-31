@@ -42,7 +42,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/article")
-public class ArticleAction extends BaseAction<Article> {
+public class ArticleAction extends BaseAction {
 
     @Autowired
     private ArticleService articleService;
@@ -58,9 +58,7 @@ public class ArticleAction extends BaseAction<Article> {
      *
      * @param id ID
      * @return Article
-     * @throws Exception
      */
-    @Override
     @ModelAttribute
     public Article get(@RequestParam(required = false) String id) throws Exception {
         Article cmsArticle;
@@ -91,9 +89,7 @@ public class ArticleAction extends BaseAction<Article> {
      * @param object   object
      * @param request  request
      * @param response @return view
-     * @throws Exception
      */
-    @Override
     @RequestMapping(value = "list")
     @RequiresPermissions("cms:article:view")
     public String list(Model model, Article object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -128,9 +124,7 @@ public class ArticleAction extends BaseAction<Article> {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("cms:article:edit")
     public String form(Model model, Article object) throws Exception {
@@ -158,7 +152,6 @@ public class ArticleAction extends BaseAction<Article> {
         return tplList;
     }
 
-    @Override
     @RequiresPermissions("cms:article:view")
     protected String save(Model model, Article object, RedirectAttributes redirectAttributes) throws Exception {
         return null;
@@ -191,7 +184,6 @@ public class ArticleAction extends BaseAction<Article> {
      * @return view
      * @throws Exception
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("cms:article:edit")
     public String delete(Model model, Article object, Param param, RedirectAttributes redirectAttributes) throws Exception {

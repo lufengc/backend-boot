@@ -9,7 +9,6 @@ import com.bdfint.backend.framework.common.Param;
 import com.bdfint.backend.framework.util.CookieUtils;
 import com.bdfint.backend.modules.cms.bean.Site;
 import com.bdfint.backend.modules.cms.service.SiteService;
-import com.bdfint.backend.modules.sys.bean.User;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang.StringUtils;
@@ -34,7 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/site")
-public class SiteAction extends BaseAction<Site> {
+public class SiteAction extends BaseAction {
 
     @Autowired
     private SiteService siteService;
@@ -45,7 +44,6 @@ public class SiteAction extends BaseAction<Site> {
      * @param id ID
      * @return Site
      */
-    @Override
     @ModelAttribute
     public Site get(@RequestParam(required = false) String id) throws Exception {
         Site cmsSite;
@@ -66,7 +64,6 @@ public class SiteAction extends BaseAction<Site> {
      * @param response HttpServletResponse
      * @return view
      */
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("cms:site:view")
     public String list(Model model, Site object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -87,7 +84,6 @@ public class SiteAction extends BaseAction<Site> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("cms:site:edit")
     public String form(Model model, Site object) throws Exception {
@@ -101,7 +97,6 @@ public class SiteAction extends BaseAction<Site> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("cms:site:edit")
     protected String save(Model model, Site object, RedirectAttributes redirectAttributes) throws Exception {
@@ -120,7 +115,6 @@ public class SiteAction extends BaseAction<Site> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("cms:site:edit")
     public String delete(Model model, Site object, Param param, RedirectAttributes redirectAttributes) throws Exception {

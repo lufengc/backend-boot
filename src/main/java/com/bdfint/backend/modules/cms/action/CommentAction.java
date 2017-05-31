@@ -34,7 +34,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cms/comment")
-public class CommentAction extends BaseAction<Comment> {
+public class CommentAction extends BaseAction {
 
     @Autowired
     private CommentService commentService;
@@ -45,7 +45,6 @@ public class CommentAction extends BaseAction<Comment> {
      * @param id ID
      * @return Comment
      */
-    @Override
     @ModelAttribute
     public Comment get(@RequestParam(required = false) String id) throws Exception {
         Comment cmsComment;
@@ -66,7 +65,6 @@ public class CommentAction extends BaseAction<Comment> {
      * @param response HttpServletResponse
      * @return view
      */
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("cms:comment:view")
     public String list(Model model, Comment object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -92,7 +90,6 @@ public class CommentAction extends BaseAction<Comment> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("cms:comment:edit")
     public String form(Model model, Comment object) throws Exception {
@@ -106,7 +103,6 @@ public class CommentAction extends BaseAction<Comment> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("cms:comment:edit")
     protected String save(Model model, Comment object, RedirectAttributes redirectAttributes) throws Exception {
@@ -130,7 +126,6 @@ public class CommentAction extends BaseAction<Comment> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("cms:comment:edit")
     public String delete(Model model, Comment object, Param param, RedirectAttributes redirectAttributes) throws Exception {

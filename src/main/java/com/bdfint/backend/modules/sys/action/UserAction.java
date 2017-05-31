@@ -5,7 +5,6 @@
 package com.bdfint.backend.modules.sys.action;
 
 import com.bdfint.backend.framework.common.BaseAction;
-import com.bdfint.backend.framework.common.Global;
 import com.bdfint.backend.framework.common.Param;
 import com.bdfint.backend.framework.util.*;
 import com.bdfint.backend.framework.util.excel.ExportExcel;
@@ -32,11 +31,8 @@ import tk.mybatis.mapper.entity.Example;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
-import java.io.File;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * 用户管理
@@ -46,7 +42,7 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/user")
-public class UserAction extends BaseAction<User> {
+public class UserAction extends BaseAction {
 
     @Autowired
     private UserService userService;
@@ -61,7 +57,6 @@ public class UserAction extends BaseAction<User> {
      * @param id ID
      * @return User
      */
-    @Override
     @ModelAttribute
     public User get(@RequestParam(required = false) String id) throws Exception {
         User User;
@@ -98,7 +93,6 @@ public class UserAction extends BaseAction<User> {
      *
      * @return ModelAndView
      */
-    @Override
     @RequestMapping(value = "list")
     @RequiresPermissions("sys:user:view")
     public String list(Model model, User object, HttpServletRequest request, HttpServletResponse response)
@@ -144,7 +138,6 @@ public class UserAction extends BaseAction<User> {
      *
      * @return ModelAndView
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("sys:user:view")
     public String form(Model model, User user) throws Exception {
@@ -156,7 +149,6 @@ public class UserAction extends BaseAction<User> {
      *
      * @return ModelAndView
      */
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("sys:user:edit")
     public String save(Model model, User user, RedirectAttributes redirectAttributes) throws Exception {
@@ -199,7 +191,6 @@ public class UserAction extends BaseAction<User> {
      *
      * @return ModelAndView
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("sys:user:edit")
     public String delete(Model model, User user, Param param, RedirectAttributes redirectAttributes) throws Exception {
