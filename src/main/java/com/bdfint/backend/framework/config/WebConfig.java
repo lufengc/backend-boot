@@ -29,6 +29,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Value("${adminPath}")
     private String adminPath;
+    @Value("${frontPath}")
+    private String frontPath;
 
     @Autowired
     private LogInterceptor logInterceptor;
@@ -50,7 +52,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public FilterRegistrationBean siteMeshFilter() {
         FilterRegistrationBean fitler = new FilterRegistrationBean();
         fitler.setFilter(new SiteMeshFilter());
-        fitler.addUrlPatterns("/a/*", "/f/*");
+        fitler.addUrlPatterns(adminPath + "/*", frontPath + "/*");
         return fitler;
     }
 

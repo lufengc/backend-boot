@@ -86,7 +86,7 @@ staticFileSuffix: .css,.js,.png,.jpg,.gif,.jpeg,.bmp,.ico,.swf,.psd,.htc,.htm,.h
 #动态文件后缀
 urlSuffix: .html
 #管理基础路径
-adminPath: /a
+adminPath: /admin
 #前端基础路径
 frontPath: /f
 #踢出之前登录的/之后登录的用户 默认踢出之前登录的用户

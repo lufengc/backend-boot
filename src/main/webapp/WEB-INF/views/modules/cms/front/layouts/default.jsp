@@ -132,7 +132,7 @@
                         <a href="${ctx}/guestbook">给我留言</a>
                     </li>
                     <li class="menu-item" data="data">
-                        <a href="${ctx}/data">就是这么无聊</a>
+                        <a href="${ctx}/data">无聊</a>
                     </li>
                 </ul>
                 <form action="#" method="get" id="searchform" class="navbar-form navbar-right visible-lg" role="search">
@@ -174,8 +174,10 @@
                 <div class="panel-heading"><h2>BGM</h2></div>
                 <ul>
                     <li>
-                        <embed src="${ctxStatic}/static/front/file/player.swf?url=${ctxStatic}/static/front/file/dahua.mp3&amp;autoplay=1"
-                               type="application/x-shockwave-flash" wmode="transparent" allowscriptaccess="always" width="260" height="26">
+                        <%--<embed src="${ctxStatic}/static/front/file/player.swf?url=${ctxStatic}/static/front/file/dahua.mp3&amp;autoplay=1"
+                               type="application/x-shockwave-flash" wmode="transparent" allowscriptaccess="always" width="260" height="26">--%>
+                        <iframe frameborder="no" marginwidth="0" marginheight="0" width=320 height=100
+                                src="http://music.163.com/outchain/player?type=2&id=2919622&auto=1"></iframe>
                     </li>
                 </ul>
 

@@ -29,7 +29,7 @@
     </script>
 </head>
 <body>
-<form:form id="inputForm" modelAttribute="cmsArticle" action="${ctx}/article/save" method="post" class="form-horizontal">
+<form:form id="inputForm" modelAttribute="article" action="${ctx}/article/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <div class="form-group">
         <label class="col-md-2 control-label" for="title">Title:</label>
