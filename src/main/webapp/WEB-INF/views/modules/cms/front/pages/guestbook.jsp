@@ -101,7 +101,7 @@
             <li>暂时还没有人留言！</li>
         </c:if>
     </ol>
-    <div class="pagination">${page}</div>
+    <table:page page="${page}"/>
 </article>
 </body>
 </html>

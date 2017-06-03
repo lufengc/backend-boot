@@ -19,7 +19,7 @@
 </head>
 <body>
 <c:forEach items="${page.list}" var="bean">
-    <c:if test="${bean.delFlag == 1}">
+    <c:if test="${bean.delFlag == 0}">
         <article class="well clearfix">
             <header class="entry-header">
                 <h1 class="entry-title">
@@ -30,7 +30,7 @@
                         <span class="pull-left">
                             <span>${fn:substring(bean.createDate, 0, 10)}</span><span class="dot">•</span>
                             <span>${bean.categoryId}</span><span class="dot">•</span>
-                            <span>${bean.author}</span>
+                            <span>${bean.createBy}</span>
                             <%--<span><a href="#">${bean.weight} 评论数</a></span><span class="dot">•</span>--%>
                             <%--<span>${bean.hits} 浏览数</span>--%>
                         </span>
