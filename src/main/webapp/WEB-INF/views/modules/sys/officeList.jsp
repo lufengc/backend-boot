@@ -9,7 +9,7 @@
         $(document).ready(function () {
             var tpl = $("#treeTableTpl").html().replace(/(\/\/<!\-\-)|(\/\/\-\->)/g, "");
             var data = ${fns:toJson(list)};
-            var rootId = "${not empty sysOffice.parentId ? sysOffice.parentId : '0'}";
+            var rootId = "${not empty office.parentId ? office.parentId : '0'}";
             addRow("#treeTableList", tpl, data, rootId, true);
             $("#treeTable").treeTable({expandLevel: 5});
         });
@@ -38,7 +38,7 @@
     <div class="col-sm-12">
         <div class="pull-left">
             <shiro:hasPermission name="sys:office:edit">
-                <table:addRow url="${ctx}/sys/office/form?parentId=${sysOffice.id}" title="机构" target="officeContent"/><!-- 增加按钮 -->
+                <table:addRow url="${ctx}/sys/office/form?parentId=${office.id}" title="机构" target="officeContent"/><!-- 增加按钮 -->
             </shiro:hasPermission>
             <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" onclick="refresh()" title="刷新">
                 <i class="glyphicon glyphicon-repeat"></i> 刷新

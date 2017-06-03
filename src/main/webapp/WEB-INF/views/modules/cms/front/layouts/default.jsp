@@ -183,6 +183,7 @@
 
             </aside>
             <aside class="widget widget_views panel panel-specs visible-lg visible-md">
+                <div class="panel-heading"><h2>分类</h2></div>
                 <ul>
                     <li>
                         <script type="text/javascript" src="${ctxStatic}/static/front/tagcloud/swfobject.js"></script>

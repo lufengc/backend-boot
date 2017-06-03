@@ -59,7 +59,7 @@
 
             <!-- 数据表 -->
             <table:check id="contentTable"/>
-            <table id="contentTable" class="table table-bordered table-hover animated zoomIn">
+            <table id="contentTable" class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th> <input type="checkbox" class="i-checks"></th>

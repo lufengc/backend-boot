@@ -80,13 +80,7 @@ public class OfficeServiceImpl extends BaseServiceImpl<Office> implements Office
     @Override
     public List<Office> getByParentId(String parentId) throws Exception {
         List<Office> childList = new ArrayList<>();
-        List<Office> officeList = UserUtils.getOfficeList();
         getChildList(childList, UserUtils.getOfficeList(), parentId);
-        for (Office office : officeList) {
-            if (parentId.equals(office.getId())) {
-                childList.add(office);
-            }
-        }
         return childList;
     }
 

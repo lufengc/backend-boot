@@ -57,10 +57,10 @@
             <h3 class="login-title">用户登录</h3>
             <form id="loginForm" class="form-group" method="post" action="${ctx}/login">
                 <div class="form-group">
-                    <input type="text" name="username" class="form-control required" placeholder="用户名" value="${username}">
+                    <input type="text" name="username" class="form-control required" placeholder="请输入用户名" value="${username}">
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" class="form-control required" placeholder="密码">
+                    <input type="password" name="password" class="form-control required" placeholder="请输入密码">
                 </div>
                 <c:if test="${isValidateCodeLogin}">
                     <div class="form-group">
