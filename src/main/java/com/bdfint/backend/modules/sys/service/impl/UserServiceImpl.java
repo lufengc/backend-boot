@@ -42,6 +42,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     public User getUserByLoginName(String loginName) {
         User user = new User();
+        user.setDelFlag(null);
         user.setLoginName(loginName);
         return userMapper.selectOne(user);
     }

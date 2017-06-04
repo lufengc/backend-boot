@@ -62,6 +62,14 @@ public class User extends DataEntity<User> {
     @Transient
     private String companyName;
 
+    /**
+     * 删除标记（0：正常；1：删除；2：审核；）
+     */
+    public static final String DEL_FLAG_NORMAL = "0";
+    public static final String DEL_FLAG_DELETE = "1";
+    public static final String DEL_FLAG_AUDIT = "2";
+    public static final String DEL_FLAG_LOCK = "3";
+
     public User() {
         super();
         this.loginFlag = Global.YES;

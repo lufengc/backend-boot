@@ -31,7 +31,7 @@
                                     <span class="text-muted text-xs block">${fns:getUser().roleNames}<b class="caret"></b></span>
                                 </span>
                             </a>
-                            <ul class="dropdown-menu animated fadeInLeft m-t-xs">
+                            <ul class="dropdown-menu animated flipInX m-t-xs">
                                 <li><a class="J_menuItem" href="${ctx}/sys/user/imageEdit">修改头像</a></li>
                                 <li><a class="J_menuItem" href="${ctx}/sys/user/info">个人资料</a></li>
                                 <li class="divider"></li>

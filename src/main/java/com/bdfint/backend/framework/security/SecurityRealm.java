@@ -82,6 +82,9 @@ public class SecurityRealm extends AuthorizingRealm {
             if (Objects.equals(user.getDelFlag(), User.DEL_FLAG_AUDIT)) {
                 throw new AuthenticationException("msg:该帐号还未审核通过，请耐心等待或联系管理员.");
             }
+            if (Objects.equals(user.getDelFlag(), User.DEL_FLAG_LOCK)) {
+                throw new AuthenticationException("msg:该帐号已被锁定，请联系管理员.");
+            }
             byte[] salt = Encodes.decodeHex(user.getPassword().substring(0, 16));
             return new SimpleAuthenticationInfo(new Principal(user, token.isMobileLogin()),
                     user.getPassword().substring(16), ByteSource.Util.bytes(salt), getName());
