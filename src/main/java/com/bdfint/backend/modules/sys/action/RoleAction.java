@@ -36,7 +36,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/role")
-public class RoleAction extends BaseAction<Role> {
+public class RoleAction extends BaseAction {
 
     @Autowired
     private RoleService roleService;
@@ -51,7 +51,6 @@ public class RoleAction extends BaseAction<Role> {
      * @param id ID
      * @return Role
      */
-    @Override
     @ModelAttribute
     public Role get(@RequestParam(required = false) String id) throws Exception {
         Role sysRole;
@@ -82,7 +81,6 @@ public class RoleAction extends BaseAction<Role> {
      * @param response HttpServletResponse
      * @return ModelAndView
      */
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("sys:role:view")
     public String list(Model model, Role object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -97,7 +95,6 @@ public class RoleAction extends BaseAction<Role> {
      * @param object object
      * @return ModelAndView
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("sys:role:view")
     public String form(Model model, Role object) throws Exception {
@@ -111,7 +108,6 @@ public class RoleAction extends BaseAction<Role> {
      * @param object object
      * @return ModelAndView
      */
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("sys:role:edit")
     public String save(Model model, Role object, RedirectAttributes redirectAttributes) throws Exception {
@@ -130,7 +126,6 @@ public class RoleAction extends BaseAction<Role> {
      * @param object object
      * @return ModelAndView
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("sys:role:edit")
     public String delete(Model model, Role object, Param param, RedirectAttributes redirectAttributes) throws Exception {

@@ -35,7 +35,7 @@ import java.util.Set;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/dict")
-public class dictAction extends BaseAction<Dict> {
+public class dictAction extends BaseAction {
 
     @Autowired
     private DictService dictService;
@@ -46,7 +46,6 @@ public class dictAction extends BaseAction<Dict> {
      * @param id id
      * @return Dict
      */
-    @Override
     @ModelAttribute
     protected Dict get(@RequestParam(required = false) String id) throws Exception {
         Dict sysDict;
@@ -63,7 +62,6 @@ public class dictAction extends BaseAction<Dict> {
      *
      * @return view
      */
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("sys:dict:view")
     protected String list(Model model, Dict object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -95,7 +93,6 @@ public class dictAction extends BaseAction<Dict> {
      *
      * @return String
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("sys:dict:view")
     protected String form(Model model, Dict dict) throws Exception {
@@ -120,7 +117,6 @@ public class dictAction extends BaseAction<Dict> {
      *
      * @return String
      */
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("sys:dict:edit")
     protected String save(Model model, Dict object, RedirectAttributes redirectAttributes) throws Exception {
@@ -137,7 +133,6 @@ public class dictAction extends BaseAction<Dict> {
      *
      * @return String
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("sys:dict:edit")
     protected String delete(Model model, Dict object, Param param, RedirectAttributes redirectAttributes) throws Exception {

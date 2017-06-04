@@ -37,7 +37,7 @@ import java.util.Objects;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/menu")
-public class MenuAction extends BaseAction<Menu> {
+public class MenuAction extends BaseAction {
 
     @Autowired
     private MenuService menuService;
@@ -48,7 +48,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param id ID
      * @return Menu
      */
-    @Override
     @ModelAttribute
     public Menu get(@RequestParam(required = false) String id) throws Exception {
         if (StringUtils.isNotEmpty(id)) {
@@ -66,7 +65,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param request  HttpServletRequest
      * @param response HttpServletResponse
      */
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("sys:menu:view")
     public String list(Model model, Menu object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -91,7 +89,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "form")
     @RequiresPermissions("sys:menu:view")
     public String form(Model model, Menu object) throws Exception {
@@ -130,7 +127,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "save")
     @RequiresPermissions("sys:menu:edit")
     public String save(Model model, Menu object, RedirectAttributes redirectAttributes) throws Exception {
@@ -149,7 +145,6 @@ public class MenuAction extends BaseAction<Menu> {
      * @param object object
      * @return view
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("sys:menu:edit")
     public String delete(Model model, Menu object, Param param, RedirectAttributes redirectAttributes) throws Exception {

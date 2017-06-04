@@ -35,14 +35,13 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/sys/log")
-public class LogAction extends BaseAction<Log> {
+public class LogAction extends BaseAction {
 
     @Autowired
     private LogService logService;
     @Autowired
     private UserService userService;
 
-    @Override
     @ModelAttribute
     public Log get(@RequestParam(required = false) String id) throws Exception {
         if (StringUtils.isNotEmpty(id)) {
@@ -61,7 +60,6 @@ public class LogAction extends BaseAction<Log> {
      * @param response HttpServletResponse
      * @return String
      */
-    @Override
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("sys:log:view")
     public String list(Model model, Log object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -114,37 +112,12 @@ public class LogAction extends BaseAction<Log> {
     }
 
     /**
-     * 表单输入页面
-     *
-     * @param model  model
-     * @param object object
-     * @return String
-     */
-    @Override
-    public String form(Model model, Log object) throws Exception {
-        return null;
-    }
-
-    /**
-     * 保存
-     *
-     * @param model  model
-     * @param object object
-     * @return String
-     */
-    @Override
-    public String save(Model model, Log object, RedirectAttributes redirectAttributes) throws Exception {
-        return null;
-    }
-
-    /**
      * 删除
      *
      * @param model  model
      * @param object object
      * @return String
      */
-    @Override
     @RequestMapping(value = "delete")
     @RequiresPermissions("sys:log:edit")
     public String delete(Model model, Log object, Param param, RedirectAttributes redirectAttributes) throws Exception {

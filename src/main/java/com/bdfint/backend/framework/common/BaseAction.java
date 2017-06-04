@@ -40,7 +40,7 @@ import java.util.Objects;
  * @author lufengcheng
  * @version 2016-01-15 09:56:22
  */
-public abstract class BaseAction<T> {
+public abstract class BaseAction {
 
     /**
      * 日志的记录
@@ -59,52 +59,52 @@ public abstract class BaseAction<T> {
     @Value("${frontPath}")
     protected String frontPath;
 
-    /**
-     * 数据模型驱动
-     *
-     * @param id ID
-     * @return T
-     */
-    protected abstract T get(@RequestParam(required = false) String id) throws Exception;
-
-    /**
-     * 显示entity的列表页面
-     *
-     * @param model    Model
-     * @param object   object
-     * @param request  HttpServletRequest
-     * @param response HttpServletResponse
-     * @return String
-     */
-    protected abstract String list(Model model, T object, HttpServletRequest request, HttpServletResponse response) throws Exception;
-
-    /**
-     * 显示新增或修改entity页面
-     *
-     * @param model  Model
-     * @param object object
-     * @return String
-     */
-    protected abstract String form(Model model, T object) throws Exception;
-
-    /**
-     * 新增或修改entity
-     *
-     * @param model  Model
-     * @param object object
-     * @return String
-     */
-    protected abstract String save(Model model, T object, RedirectAttributes redirectAttributes) throws Exception;
-
-    /**
-     * 删除entity
-     *
-     * @param model  Model
-     * @param object object
-     * @param param  参数接收器
-     * @return String
-     */
-    protected abstract String delete(Model model, T object, Param param, RedirectAttributes redirectAttributes) throws Exception;
+//    /**
+//     * 数据模型驱动
+//     *
+//     * @param id ID
+//     * @return T
+//     */
+//    protected abstract T get(@RequestParam(required = false) String id) throws Exception;
+//
+//    /**
+//     * 显示entity的列表页面
+//     *
+//     * @param model    Model
+//     * @param object   object
+//     * @param request  HttpServletRequest
+//     * @param response HttpServletResponse
+//     * @return String
+//     */
+//    protected abstract String list(Model model, T object, HttpServletRequest request, HttpServletResponse response) throws Exception;
+//
+//    /**
+//     * 显示新增或修改entity页面
+//     *
+//     * @param model  Model
+//     * @param object object
+//     * @return String
+//     */
+//    protected abstract String form(Model model, T object) throws Exception;
+//
+//    /**
+//     * 新增或修改entity
+//     *
+//     * @param model  Model
+//     * @param object object
+//     * @return String
+//     */
+//    protected abstract String save(Model model, T object, RedirectAttributes redirectAttributes) throws Exception;
+//
+//    /**
+//     * 删除entity
+//     *
+//     * @param model  Model
+//     * @param object object
+//     * @param param  参数接收器
+//     * @return String
+//     */
+//    protected abstract String delete(Model model, T object, Param param, RedirectAttributes redirectAttributes) throws Exception;
 
     /**
      * 验证Bean实例对象
