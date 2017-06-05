@@ -116,19 +116,19 @@
 </head>
 <body class="gray-bg">
     <div class="wrapper wrapper-content">
-        <div class="row animated fadeInRight">
+        <div class="row animated zoomIn">
             <sys:message hideType="1" content="${message}"/>
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h5>个人资料</h5>
-                        <div class="ibox-tools">
+                        <%--<div class="ibox-tools">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">编辑<i class="fa fa-wrench"></i></a>
                             <ul class="dropdown-menu dropdown-user">
                                 <li><a id="userImageBtn" data-toggle="modal" data-target="#register">更换头像</a></li>
                                 <li><a id="userInfoBtn" data-toggle="modal" data-target="#register">编辑资料</a></li>
                             </ul>
-                        </div>
+                        </div>--%>
                     </div>
                     <div class="ibox-content">
                         <div class="row">
@@ -143,7 +143,7 @@
                                         <tbody>
                                             <tr>
                                                 <td><strong>用户名</strong></td>
-                                                <td>${user.loingName}</td>
+                                                <td>${user.loginName}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>用户角色</strong></td>

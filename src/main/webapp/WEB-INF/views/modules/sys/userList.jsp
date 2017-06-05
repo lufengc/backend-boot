@@ -11,29 +11,29 @@
             var ids="";
             var error = 0;
             $("#" + tableId).find("tbody tr td input.i-checks:checkbox").each(function(){
-                if(true == $(this).is(':checked')){
+                if(true === $(this).is(':checked')){
                     var statusId = $(this).attr("statusid");
-                    if(status == 1 && statusId =="1"){
+                    if(status === 1 && statusId ==="0"){
                         error = -1;
                         return;
-                    }else if(status == 3 && statusId == "3"){
+                    }else if(status === 3 && statusId === "3"){
                         error = -2;
                         return;
                     }
                     str+=$(this).attr("id")+",";
                 }
             });
-            if(error == -1){
+            if(error === -1){
                 top.layer.alert('请选择已锁定的账户进行解锁!', {icon: 0, title:'警告'});
                 return "0";
-            }else if(error == -2) {
+            }else if(error === -2) {
                 top.layer.alert('请选择未锁定的账户进行锁定!', {icon: 0, title:'警告'});
                 return "0";
             }
-            if(str.substr(str.length-1)== ','){
+            if(str.substr(str.length-1)=== ','){
                 ids = str.substr(0,str.length-1);
             }
-            if(ids == ""){
+            if(ids === ""){
                 top.layer.alert('请至少选择一条数据!', {icon: 0, title:'警告'});
                 return "0";
             }else{
@@ -43,9 +43,9 @@
 
         function lock(){
             var ids = isCheck("contentTable", 3);
-            if(ids != "0"){
+            if(ids !== "0"){
                 top.layer.confirm('确认要锁定吗?', {icon: 3, title:'系统提示'}, function(index){
-                    window.location = "${ctx}/sys/user/updateStatus?status=3&ids="+ids;
+                    window.location = "${ctx}/sys/user/updateStatus?delFlag=3&ids="+ids;
                     top.layer.close(index);
                 });
             }
@@ -53,9 +53,9 @@
 
         function unlock(){
             var ids = isCheck("contentTable", 1);
-            if(ids != "0"){
+            if(ids !== "0"){
                 top.layer.confirm('确认要解锁吗?', {icon: 3, title:'系统提示'}, function(index){
-                    window.location = "${ctx}/sys/user/updateStatus?status=1&ids="+ids;
+                    window.location = "${ctx}/sys/user/updateStatus?delFlag=0&ids="+ids;
                     top.layer.close(index);
                 });
             }
@@ -63,7 +63,7 @@
 
         function initPassword() {
             var ids = isCheck("contentTable");
-            if(ids != "0"){
+            if(ids !== "0"){
                 top.layer.confirm('确认要初始化密码吗?', {icon: 3, title:'系统提示'}, function(index){
                     window.location = "${ctx}/sys/user/initPassword?password=123456&ids="+ids;
                     top.layer.close(index);

@@ -96,7 +96,7 @@ userMaxSession: 2
 #是否不允许刷新主页，不允许情况下，刷新主页会导致重新登录
 notAllowRefreshIndex: false
 #是否允许启动清空redis缓存，允许情况下，项目启动会清空所有缓存
-allowStartupEmptyCache: false
+allowStartupEmptyCache: true
 #单点登录CAS设置
 casServerUrl: http://127.0.0.1:8180/cas
 casProjectUrl: http://127.0.0.1:8080/a

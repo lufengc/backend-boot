@@ -182,7 +182,7 @@ public class UserAction extends BaseAction {
     @RequiresPermissions("sys:user:edit")
     public String initPassword(User user, Param param, RedirectAttributes redirectAttributes) throws Exception {
         userService.initPassword(param.getIds(), user.getPassword());
-        addMessage(redirectAttributes, "操作成功，属两个");
+        addMessage(redirectAttributes, "操作成功");
         return "redirect:" + adminPath + "/sys/user/list?repage";
     }
 
@@ -361,7 +361,7 @@ public class UserAction extends BaseAction {
     @RequiresPermissions("sys:user:view")
     public String info(Model model) {
         User currentUser = UserUtils.getUser();
-        model.addAttribute("User", currentUser);
+        model.addAttribute("user", currentUser);
         return "modules/sys/userInfo";
     }
 
