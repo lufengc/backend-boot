@@ -238,7 +238,7 @@
         <div>${fns:getDate('yyyy年MM月dd日 E')}</div>
     </div>
     <ul id="jump" class="visible-lg">
-        <li><a id="share" title="意见反馈" href="#" target="_blank"><i class="fa fa-comments-o"></i></a></li>
+        <li><a id="share" title="意见反馈" href="${ctx}/guestbook" target="_blank"><i class="fa fa-comments-o"></i></a></li>
         <li><a id="top" href="#top" title="返回顶部" style="display:none;"><i class="fa fa-arrow-circle-up"></i></a></li>
     </ul>
 </footer>

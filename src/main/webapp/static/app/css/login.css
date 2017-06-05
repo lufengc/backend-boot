@@ -12,7 +12,8 @@
 }
 
 .light-login {
-    background: #dfe0e2 url('/static/app/image/light-login.jpg') repeat;
+    background: #dfe0e2 url('/static/app/image/login-5.png') repeat;
+    overflow: hidden;
 }
 
 .middle-box {
