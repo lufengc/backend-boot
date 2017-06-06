@@ -17,9 +17,9 @@
         </h1>
         <div class="clearfix entry-meta align-center">
             <span>
-                <span>${fn:substring(bean.createDate, 0, 19)}</span><span class="dot">•</span>
-                <span>${bean.categoryId}</span><span class="dot">•</span>
-                <span>${bean.author}</span>
+                <span><fmt:formatDate value="${bean.createDate}" type="both"/></span><span class="dot">•</span>
+                <span>${fnc:getCategory(bean.categoryId).name}</span><span class="dot">•</span>
+                <span>${fns:getUserById(bean.createBy).name}</span>
                 <%--<span><a href="#">${bean.weight} 评论数</a></span><span class="dot">•</span>--%>
                 <%--<span>${bean.hits} 浏览数</span>--%>
             </span>
