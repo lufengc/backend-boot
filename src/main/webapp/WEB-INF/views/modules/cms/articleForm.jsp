@@ -257,7 +257,7 @@
         </div>
     </div>
     <c:if test="${not empty article.id}">
-        <div class="control-group">
+        <div class="control-group hidden">
             <label class="control-label">查看评论:</label>
             <div class="controls">
                 <input id="btnComment" class="btn" type="button" value="查看评论"

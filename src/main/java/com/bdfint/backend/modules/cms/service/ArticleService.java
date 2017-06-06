@@ -18,8 +18,6 @@ import java.util.List;
  */
 public interface ArticleService extends BaseService<Article> {
 
-    String save(Article object, ArticleData articleData) throws Exception;
-
     ArticleData getArticleData(String id);
 
     void updateArticle(Article object) throws Exception;

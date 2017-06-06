@@ -72,6 +72,9 @@ public class SiteAction extends BaseAction {
         if (object.getName() != null) {
             criteria.andLike("name", "%" + object.getName() + "%");
         }
+        if (object.getDelFlag() != null) {
+            criteria.andEqualTo("delFlag", object.getDelFlag());
+        }
         PageInfo<Site> page = siteService.getPage(object, example);
         model.addAttribute("page", page);
         return "modules/cms/siteList";

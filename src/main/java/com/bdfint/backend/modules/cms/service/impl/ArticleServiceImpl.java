@@ -61,19 +61,20 @@ public class ArticleServiceImpl extends BaseServiceImpl<Article> implements Arti
      * @param object object
      */
     @Override
-    public String save(Article object, ArticleData articleData) throws Exception {
+    public String save(Article object) throws Exception {
         if (StringUtils.isNotBlank(object.getViewConfig())) {
             object.setViewConfig(StringEscapeUtils.unescapeHtml4(object.getViewConfig()));
         }
         if (StringUtils.isNotEmpty(object.getId())) {
             object.preUpdate();
             articleMapper.updateByPrimaryKeySelective(object);
-            articleDataMapper.updateByPrimaryKeySelective(articleData);
+            object.getArticleData().setId(object.getId());
+            articleDataMapper.updateByPrimaryKeySelective(object.getArticleData());
         } else {
             object.preInsert();
             articleMapper.insertSelective(object);
-            articleData.setId(object.getId());
-            articleDataMapper.insertSelective(articleData);
+            object.getArticleData().setId(object.getId());
+            articleDataMapper.insertSelective(object.getArticleData());
         }
         return object.getId();
     }
@@ -112,11 +113,6 @@ public class ArticleServiceImpl extends BaseServiceImpl<Article> implements Arti
             articleDataMapper.deleteByPrimaryKey(id);
         }
         return 1;
-    }
-
-    @Override
-    public String save(Article object) throws Exception {
-        return null;
     }
 
     /**

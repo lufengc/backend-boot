@@ -77,7 +77,6 @@
                             <td>${fns:getDictLabel(tpl.inList, 'show_hide', '隐藏')}</td>
                             <td>${fns:getDictLabel(tpl.showModes, 'cms_show_modes', '默认展现方式')}</td>
                             <td>
-                                <a href="${pageContext.request.contextPath}${fns:getFrontPath()}/list-${tpl.id}.html" target="_blank">访问</a>
                                 <shiro:hasPermission name="cms:category:edit">
                                     <a href="#" onclick="openDialog('修改', '${ctx}/cms/category/form?id=${tpl.id}')">修改</a>
                                     <a href="#" onclick="return confirmx('要删除该栏目及所有子栏目项吗？', '${ctx}/cms/category/delete?id=${tpl.id}')">删除</a>

@@ -34,8 +34,6 @@ import java.util.UUID;
 @RequestMapping(value = "${adminPath}")
 public class UploadAction {
 
-
-
     /**
      * 上传图片
      *
@@ -47,9 +45,6 @@ public class UploadAction {
     public String uploadImage(@RequestParam(value = "upload", required = false) MultipartFile upload) {
         return UploadUtils.uploadImage(upload, 1);
     }
-
-
-
 
     /**
      * 编辑器上传图片

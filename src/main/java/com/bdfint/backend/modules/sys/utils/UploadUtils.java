@@ -33,7 +33,7 @@ public class UploadUtils {
                 if (allowed) {
                     String path = Global.getFileUploadPath();
                     if (uploadType == 2) { //编辑器上传
-                        realPath += "editor";
+                        realPath += "editor/";
                     }
                     realPath += "userid_" + UserUtils.getPrincipal() + "/images/"
                             + DateUtils.formatDate(new Date()) + "/";

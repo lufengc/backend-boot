@@ -150,10 +150,9 @@ public class FrontAction extends BaseAction {
      * @return view
      */
     @RequestMapping(value = "/article/save")
-    public String save(Model model, Article object, ArticleData articleData,
-                       RedirectAttributes redirectAttributes) throws Exception {
+    public String save(Model model, Article object, RedirectAttributes redirectAttributes) throws Exception {
         object.setCategoryId("心情随笔");
-        String id = articleService.save(object, articleData);
+        String id = articleService.save(object);
         addMessage(redirectAttributes, "保存成功");
         return "redirect:" + frontPath + "/grz/article/" + id;
     }

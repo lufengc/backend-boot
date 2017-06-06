@@ -61,13 +61,14 @@ public class ArticleAction extends BaseAction {
      */
     @ModelAttribute
     public Article get(@RequestParam(required = false) String id) throws Exception {
-        Article cmsArticle;
+        Article article;
         if (StringUtils.isNotEmpty(id)) {
-            cmsArticle = articleService.get(id);
+            article = articleService.get(id);
+            article.setCategoryName(categoryService.get(article.getCategoryId()).getName());
         } else {
-            cmsArticle = new Article();
+            article = new Article();
         }
-        return cmsArticle;
+        return article;
     }
 
     @RequestMapping(value = "")
@@ -106,6 +107,13 @@ public class ArticleAction extends BaseAction {
             }
             conditions += " AND category_id in(" + StringUtils.idsToString(ids) + ")";
         }
+
+        if (StringUtils.isNotEmpty(object.getTitle())) {
+            conditions += " AND title LIKE '%" + object.getTitle() + "%'";
+        }
+        if (StringUtils.isNotEmpty(object.getKeywords())) {
+            conditions += " AND keywords LIKE '%" + object.getKeywords() + "%'";
+        }
         Example example = new Example(Article.class);
         example.createCriteria().andCondition(conditions);
         PageInfo<Article> page = articleService.getPage(object, example);
@@ -141,7 +149,7 @@ public class ArticleAction extends BaseAction {
         object.setArticleData(articleData);
         model.addAttribute("contentViewList", getTplContent());
         model.addAttribute("article_DEFAULT_TEMPLATE", Article.DEFAULT_TEMPLATE);
-        model.addAttribute("cmsArticle", object);
+        model.addAttribute("article", object);
         CmsUtils.addViewConfigAttribute(model, CmsUtils.getCategory(object.getCategoryId()));
         return "modules/cms/articleForm";
     }
@@ -150,11 +158,6 @@ public class ArticleAction extends BaseAction {
         List<String> tplList = fileTplService.getNameListByPrefix(siteService.get(Site.getCurrentSiteId()).getSolutionPath());
         tplList = TplUtils.tplTrim(tplList, Article.DEFAULT_TEMPLATE, "");
         return tplList;
-    }
-
-    @RequiresPermissions("cms:article:view")
-    protected String save(Model model, Article object, RedirectAttributes redirectAttributes) throws Exception {
-        return null;
     }
 
     /**
@@ -166,12 +169,11 @@ public class ArticleAction extends BaseAction {
      */
     @RequestMapping(value = "save")
     @RequiresPermissions("cms:article:edit")
-    public String save(Model model, Article object, ArticleData articleData,
-                       RedirectAttributes redirectAttributes) throws Exception {
+    public String save(Model model, Article object, RedirectAttributes redirectAttributes) throws Exception {
         if (!beanValidator(model, object)) {
             return form(model, object);
         }
-        articleService.save(object, articleData);
+        articleService.save(object);
         addMessage(redirectAttributes, "保存成功");
         return "redirect:" + adminPath + "/cms/article/list?repage";
     }
@@ -182,7 +184,6 @@ public class ArticleAction extends BaseAction {
      * @param model  Model
      * @param object object
      * @return view
-     * @throws Exception
      */
     @RequestMapping(value = "delete")
     @RequiresPermissions("cms:article:edit")

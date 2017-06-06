@@ -8272,3 +8272,7 @@ input[type=checkbox], input[type=radio] {
 .form-group input, .form-group button {
     margin-bottom: 5px;
 }
+
+.controls span {
+    padding-right: 8px;
+}
