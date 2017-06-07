@@ -37,7 +37,7 @@
 <form:form id="inputForm" modelAttribute="dict" action="${ctx}/sys/dict/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
-    <table class="table table-bordered  table-condensed dataTables-example dataTable no-footer">
+    <table class="table table-bordered">
         <tbody>
         <tr>
             <td class="width-15 active"><label class="pull-right">字典名:</label></td>

@@ -38,7 +38,7 @@
 	<form:form id="inputForm" modelAttribute="office" action="${ctx}/sys/office/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
-		<table class="table">
+		<table class="table table-bordered">
 		   <tbody>
 		      <tr>
 		         <td class="width-15 active"><label class="pull-right">上级机构:</label></td>
@@ -69,22 +69,25 @@
 				 </td>
 		      </tr>
 		      <tr>
-		         <td class="width-15 active"><label class="pull-right">是否可用:</label></td>
-		         <td class="width-35">
-                     <form:select path="useable" class="form-control">
-					    <form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-                     </form:select>
-					<span class="help-inline">“是”代表此账号允许登陆，“否”则表示此账号不允许登陆</span></td>
 		         <td class="width-15 active"><label class="pull-right">主负责人:</label></td>
 		         <td class="width-35"><sys:treeselect id="primaryPerson" name="primaryPerson" value="${office.primaryPerson}"
                                                       labelName="primaryPersonName" labelValue="${office.primaryPersonName}"
-					title="用户" url="/sys/office/treeData?type=3" cssClass="form-control" allowClear="true" notAllowSelectParent="true"/></td>
+													  title="用户" url="/sys/office/treeData?type=3" cssClass="form-control"
+													  allowClear="true" notAllowSelectParent="true"/></td>
+				  <td class="width-15 active"><label class="pull-right">副负责人:</label></td>
+				  <td class="width-35"><sys:treeselect id="deputyPerson" name="deputyPerson" value="${office.deputyPerson}"
+													   labelName="deputyPersonName" labelValue="${office.deputyPersonName}"
+													   title="用户" url="/sys/office/treeData?type=3" cssClass="form-control"
+													   allowClear="true" notAllowSelectParent="true"/></td>
 		      </tr>
 		      <tr>
-		         <td class="width-15 active"><label class="pull-right">副负责人:</label></td>
-		         <td class="width-35"><sys:treeselect id="deputyPerson" name="deputyPerson" value="${office.deputyPerson}"
-                                                      labelName="deputyPersonName" labelValue="${office.deputyPersonName}"
-					title="用户" url="/sys/office/treeData?type=3" cssClass="form-control" allowClear="true" notAllowSelectParent="true"/></td>
+
+				  <td class="width-15 active"><label class="pull-right">是否可用:</label></td>
+				  <td class="width-35">
+					  <form:select path="useable" class="form-control">
+						  <form:options items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+					  </form:select>
+					  <%--<span class="help-inline">“是”代表此账号允许登陆，“否”则表示此账号不允许登陆</span></td>--%>
 		         <td class="width-15 active"><label class="pull-right">联系地址:</label></td>
 		         <td class="width-35"><form:input path="address" htmlEscape="false" maxlength="50" cssClass="form-control" /></td>
 		      </tr>

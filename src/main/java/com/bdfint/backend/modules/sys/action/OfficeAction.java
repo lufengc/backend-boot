@@ -106,7 +106,7 @@ public class OfficeAction extends BaseAction {
             office.setAreaId(officeService.get(user.getOfficeId()).getAreaId());
         }
         // 自动获取排序号
-        if (StringUtils.isBlank(office.getId()) && office.getParentId() != null) {
+        if (StringUtils.isEmpty(office.getId()) && StringUtils.isNotEmpty(office.getParentId())) {
             int size = 0;
             List<Office> list = officeService.getList(true);
             for (Office e : list) {

@@ -36,7 +36,7 @@
 <form:form id="inputForm" modelAttribute="area" action="${ctx}/sys/area/save" method="post" class="form-horizontal">
     <form:hidden path="id"/>
     <sys:message content="${message}"/>
-    <table class="table">
+    <table class="table table-bordered">
         <tbody>
         <tr>
             <td class="width-15 active"><label class="pull-right"><span style="color: red; ">*</span>上级区域:</label></td>
