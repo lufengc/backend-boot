@@ -5,7 +5,6 @@
 package com.bdfint.backend.modules.gen.bean;
 
 import com.bdfint.backend.framework.common.DataEntity;
-import com.bdfint.backend.framework.util.BeanToTable;
 import com.bdfint.backend.framework.util.StringUtils;
 import com.google.common.collect.Lists;
 
@@ -250,7 +249,7 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
         String[][] sss = new String[ss.length][2];
         for (int i = 0; i < ss.length; i++) {
             sss[i][0] = ss[i];
-            sss[i][1] = BeanToTable.beanToTable(ss[i]);
+            sss[i][1] = StringUtils.toUnderScoreCase(ss[i]);
         }
         return sss;
     }

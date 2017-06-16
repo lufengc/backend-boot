@@ -5,7 +5,6 @@
 package com.bdfint.backend.modules.gen.service.impl;
 
 import com.bdfint.backend.framework.common.BaseServiceImpl;
-import com.bdfint.backend.framework.util.BeanToTable;
 import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.gen.bean.*;
@@ -124,7 +123,7 @@ public class GenTableServiceImpl extends BaseServiceImpl<GenTable> implements Ge
                     if (StringUtils.isBlank(genTable.getComments())) {
                         genTable.setComments(genTable.getName());
                     }
-                    genTable.setClassName(BeanToTable.tableNameToClassName(genTable.getName()));
+                    genTable.setClassName(StringUtils.toCapitalizeCamelCase(genTable.getName()));
                 }
                 // 添加新列
                 List<GenTableColumn> columnList = genTableMapper.findTableColumnList(genTable.getName().toUpperCase());

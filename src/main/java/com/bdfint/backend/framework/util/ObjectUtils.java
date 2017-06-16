@@ -157,7 +157,7 @@ public class ObjectUtils extends org.apache.commons.lang3.ObjectUtils {
             PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
             for (PropertyDescriptor property : propertyDescriptors) {
                 String propertyName = property.getName();
-                String tableField = BeanToTable.beanToTable(propertyName);
+                String tableField = com.bdfint.backend.framework.util.StringUtils.toUnderScoreCase(propertyName);
                 if (map.containsKey(tableField)) {
                     try {
                         property.getWriteMethod().invoke(obj, map.get(tableField));

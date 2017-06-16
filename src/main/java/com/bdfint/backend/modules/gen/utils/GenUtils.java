@@ -79,7 +79,7 @@ public class GenUtils {
             }
 
             // 设置java字段名
-            column.setJavaField(BeanToTable.tableFieldToClassProperty(column.getName()));
+            column.setJavaField(StringUtils.toCamelCase(column.getName()));
 
             // 是否是主键
             column.setIsPk(genTable.getPkList().contains(column.getName()) ? "1" : "0");
