@@ -15,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.exceptions.JedisException;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -28,7 +30,7 @@ public class JedisUtils {
 
     private static Logger logger = LoggerFactory.getLogger(JedisUtils.class);
 
-    //private static JedisPool jedisPool = SpringContextHolder.getBean(JedisPool.class);
+    private static JedisPool jedisPool = SpringContextHolder.getBean(JedisPool.class);
 
     private static JedisCluster cluster = SpringContextHolder.getBean(JedisCluster.class);
 
@@ -39,18 +41,11 @@ public class JedisUtils {
      * @return 值
      */
     public static byte[] hget(byte[] key, byte[] field) {
-        byte[] value = null;
-        JedisCluster jedis = null;
-        try {
-            jedis = getResource();
-            if (jedis.exists(key)) {
-                value = jedis.hget(key, field);
-                logger.debug("hget {} = {}", key, value);
-            }
-        } catch (Exception e) {
-            logger.warn("hget {} = {}", key, value, e);
-        } finally {
-            returnResource(jedis);
+        byte[] value;
+        if (cluster != null) {
+            value = cluster.hget(key, field);
+        } else {
+            value = getResource().hget(key, field);
         }
         return value;
     }
@@ -63,17 +58,10 @@ public class JedisUtils {
      */
     public static Map<String, String> hgetAll(String key) {
         Map<String, String> value = null;
-        JedisCluster jedis = null;
-        try {
-            jedis = getResource();
-            if (jedis.exists(key)) {
-                value = jedis.hgetAll(key);
-                logger.debug("hgetAll {} = {}", key);
-            }
-        } catch (Exception e) {
-            logger.warn("hgetAll {} = {}", key, value, e);
-        } finally {
-            returnResource(jedis);
+        if (cluster != null) {
+            value = cluster.hgetAll(key);
+        } else {
+            value = getResource().hgetAll(key);
         }
         return value;
     }
@@ -86,18 +74,10 @@ public class JedisUtils {
      */
     public static String get(String key) {
         String value = null;
-        JedisCluster jedis = null;
-        try {
-            jedis = getResource();
-            if (jedis.exists(key)) {
-                value = jedis.get(key);
-                value = StringUtils.isNotBlank(value) && !"nil".equalsIgnoreCase(value) ? value : null;
-                logger.debug("get {} = {}", key, value);
-            }
-        } catch (Exception e) {
-            logger.warn("get {} = {}", key, value, e);
-        } finally {
-            returnResource(jedis);
+        if (cluster != null) {
+            value = cluster.get(key);
+        } else {
+            value = getResource().get(key);
         }
         return value;
     }
@@ -110,17 +90,10 @@ public class JedisUtils {
      */
     public static Object getObject(String key) {
         Object value = null;
-        JedisCluster jedis = null;
-        try {
-            jedis = getResource();
-            if (jedis.exists(getBytesKey(key))) {
-                value = toObject(jedis.get(getBytesKey(key)));
-                logger.debug("getObject {} = {}", key, value);
-            }
-        } catch (Exception e) {
-            logger.warn("getObject {} = {}", key, value, e);
-        } finally {
-            returnResource(jedis);
+        if (cluster != null) {
+            value = toObject(cluster.get(getBytesKey(key)));
+        } else {
+            value = toObject(getResource().get(getBytesKey(key)));
         }
         return value;
     }
@@ -135,6 +108,12 @@ public class JedisUtils {
      */
     public static String set(String key, String value, int cacheSeconds) {
         String result = null;
+        if (cluster != null) {
+            value = toObject(cluster.get(getBytesKey(key)));
+        } else {
+            value = toObject(getResource().get(getBytesKey(key)));
+        }
+
         JedisCluster jedis = null;
         try {
             jedis = getResource();
@@ -160,6 +139,12 @@ public class JedisUtils {
      */
     public static long hset(byte[] key, byte[] field, byte[] value) {
         long result = 0;
+        if (cluster != null) {
+            value = toObject(cluster.get(getBytesKey(key)));
+        } else {
+            value = toObject(getResource().get(getBytesKey(key)));
+        }
+
         JedisCluster jedis = null;
         try {
             jedis = getResource();
@@ -183,6 +168,8 @@ public class JedisUtils {
      */
     public static String setObject(String key, Object value, int cacheSeconds) {
         String result = null;
+
+
         JedisCluster jedis = null;
         try {
             jedis = getResource();
@@ -988,8 +975,8 @@ public class JedisUtils {
     /**
      * 获取资源
      */
-    public static JedisCluster getResource() {
-        /*Jedis jedis = null;
+    public static Jedis getResource() {
+        Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
             logger.debug("getResource.", jedis);
@@ -997,17 +984,37 @@ public class JedisUtils {
             logger.warn("getResource.", e);
             returnResource(jedis);
             throw e;
-        }*/
+        }
+        return jedis;
+    }
+
+    /**
+     * 释放资源
+     */
+    public static void returnResource(Jedis jedis) {
+        if (jedis != null) {
+            jedis.close();
+        }
+    }
+
+    /**
+     * 获取redis集群资源
+     */
+    public static JedisCluster getClusterResource() {
         return cluster;
     }
 
     /**
      * 释放资源
      */
-    public static void returnResource(JedisCluster jedis) {
-        /*if (jedis != null) {
-            jedis.close();
-        }*/
+    public static void returnClusterResource(JedisCluster jedis) {
+        if (jedis != null) {
+            try {
+                jedis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
