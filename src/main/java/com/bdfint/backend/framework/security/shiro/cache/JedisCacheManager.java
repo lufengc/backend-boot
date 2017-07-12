@@ -67,7 +67,7 @@ public class JedisCacheManager implements CacheManager {
                 }
             }
 
-            V value = (V) JedisUtils.hget(JedisUtils.getBytesKey(cacheKeyName), JedisUtils.getBytesKey(key));
+            V value = (V) JedisUtils.toObject(JedisUtils.hget(JedisUtils.getBytesKey(cacheKeyName), JedisUtils.getBytesKey(key)));
             logger.debug("get {} {} {}", cacheKeyName, key, request != null ? request.getRequestURI() : "");
 
             if (request != null && value != null) {
@@ -91,7 +91,7 @@ public class JedisCacheManager implements CacheManager {
         @SuppressWarnings("unchecked")
         @Override
         public V remove(K key) throws CacheException {
-            V value = (V) JedisUtils.hget(JedisUtils.getBytesKey(cacheKeyName), JedisUtils.getBytesKey(key));
+            V value = (V) JedisUtils.toObject(JedisUtils.hget(JedisUtils.getBytesKey(cacheKeyName), JedisUtils.getBytesKey(key)));
             JedisUtils.hdel(JedisUtils.getBytesKey(cacheKeyName), JedisUtils.getBytesKey(key));
             logger.debug("remove {} {}", cacheKeyName, key);
             return value;
