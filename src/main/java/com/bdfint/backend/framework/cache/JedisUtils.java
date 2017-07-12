@@ -16,10 +16,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Jedis Cache 工具类
@@ -34,6 +31,52 @@ public class JedisUtils {
     //private static JedisPool jedisPool = SpringContextHolder.getBean(JedisPool.class);
 
     private static JedisCluster cluster = SpringContextHolder.getBean(JedisCluster.class);
+
+    /**
+     * 获取缓存
+     *
+     * @param key 键
+     * @return 值
+     */
+    public static byte[] hget(byte[] key, byte[] field) {
+        byte[] value = null;
+        JedisCluster jedis = null;
+        try {
+            jedis = getResource();
+            if (jedis.exists(key)) {
+                value = jedis.hget(key, field);
+                logger.debug("hget {} = {}", key, value);
+            }
+        } catch (Exception e) {
+            logger.warn("hget {} = {}", key, value, e);
+        } finally {
+            returnResource(jedis);
+        }
+        return value;
+    }
+
+    /**
+     * 获取缓存
+     *
+     * @param key 键
+     * @return 值
+     */
+    public static Map<String, String> hgetAll(String key) {
+        Map<String, String> value = null;
+        JedisCluster jedis = null;
+        try {
+            jedis = getResource();
+            if (jedis.exists(key)) {
+                value = jedis.hgetAll(key);
+                logger.debug("hgetAll {} = {}", key);
+            }
+        } catch (Exception e) {
+            logger.warn("hgetAll {} = {}", key, value, e);
+        } finally {
+            returnResource(jedis);
+        }
+        return value;
+    }
 
     /**
      * 获取缓存
@@ -99,6 +142,28 @@ public class JedisUtils {
             if (cacheSeconds != 0) {
                 jedis.expire(key, cacheSeconds);
             }
+            logger.debug("set {} = {}", key, value);
+        } catch (Exception e) {
+            logger.warn("set {} = {}", key, value, e);
+        } finally {
+            returnResource(jedis);
+        }
+        return result;
+    }
+
+    /**
+     * 设置缓存
+     *
+     * @param key   键
+     * @param value 值
+     * @return set的信息
+     */
+    public static long hset(byte[] key, byte[] field, byte[] value) {
+        long result = 0;
+        JedisCluster jedis = null;
+        try {
+            jedis = getResource();
+            result = jedis.hset(key, field, value);
             logger.debug("set {} = {}", key, value);
         } catch (Exception e) {
             logger.warn("set {} = {}", key, value, e);
@@ -733,6 +798,31 @@ public class JedisUtils {
      * @param key 键
      * @return long
      */
+    public static long hdel(byte[] key, byte[]... field) {
+        long result = 0;
+        JedisCluster jedis = null;
+        try {
+            jedis = getResource();
+            if (jedis.exists(key)) {
+                result = jedis.hdel(key, field);
+                logger.debug("del {}", key);
+            } else {
+                logger.debug("del {} not exists", key);
+            }
+        } catch (Exception e) {
+            logger.warn("del {}", key, e);
+        } finally {
+            returnResource(jedis);
+        }
+        return result;
+    }
+
+    /**
+     * 删除缓存
+     *
+     * @param key 键
+     * @return long
+     */
     public static long delObject(String key) {
         long result = 0;
         JedisCluster jedis = null;
@@ -828,6 +918,64 @@ public class JedisUtils {
         try {
             jedis = getResource();
             result = jedis.exists(getBytesKey(key));
+            logger.debug("existsObject {}", key);
+        } catch (Exception e) {
+            logger.warn("existsObject {}", key, e);
+        } finally {
+            returnResource(jedis);
+        }
+        return result;
+    }
+
+
+    /**
+     * @param key 键
+     * @return boolean
+     */
+    public static long hlen(byte[] key) {
+        long result = 0;
+        JedisCluster jedis = null;
+        try {
+            jedis = getResource();
+            result = jedis.hlen(key);
+            logger.debug("existsObject {}", key);
+        } catch (Exception e) {
+            logger.warn("existsObject {}", key, e);
+        } finally {
+            returnResource(jedis);
+        }
+        return result;
+    }
+
+    /**
+     * @param key 键
+     * @return boolean
+     */
+    public static Set<byte[]> hkeys(byte[] key) {
+        Set<byte[]> result = null;
+        JedisCluster jedis = null;
+        try {
+            jedis = getResource();
+            result = jedis.hkeys(key);
+            logger.debug("existsObject {}", key);
+        } catch (Exception e) {
+            logger.warn("existsObject {}", key, e);
+        } finally {
+            returnResource(jedis);
+        }
+        return result;
+    }
+
+    /**
+     * @param key 键
+     * @return boolean
+     */
+    public static Collection<byte[]> hvals(byte[] key) {
+        Collection<byte[]> result = null;
+        JedisCluster jedis = null;
+        try {
+            jedis = getResource();
+            result = jedis.hvals(key);
             logger.debug("existsObject {}", key);
         } catch (Exception e) {
             logger.warn("existsObject {}", key, e);

@@ -63,49 +63,27 @@ public class JedisSessionDAO extends AbstractSessionDAO implements SessionDAO {
             }
         }
 
-        JedisCluster jedis = null;
-        try {
+        // 获取登录者编号
+        PrincipalCollection pc = (PrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+        String principalId = pc != null ? pc.getPrimaryPrincipal().toString() : StringUtils.EMPTY;
 
-            jedis = JedisUtils.getResource();
+        JedisUtils.hset(JedisUtils.getBytesKey(sessionKeyPrefix), JedisUtils.getBytesKey(session.getId()), JedisUtils.getBytesKey(principalId + "|" + session.getTimeout() + "|" + session.getLastAccessTime().getTime()));
 
-            // 获取登录者编号
-            PrincipalCollection pc = (PrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
-            String principalId = pc != null ? pc.getPrimaryPrincipal().toString() : StringUtils.EMPTY;
+        JedisUtils.setObject(sessionKeyPrefix + session.getId(), session, (int) (session.getTimeout() / 1000));
 
-            jedis.hset(sessionKeyPrefix, session.getId().toString(), principalId + "|" + session.getTimeout() + "|" + session.getLastAccessTime().getTime());
-            jedis.set(JedisUtils.getBytesKey(sessionKeyPrefix + session.getId()), JedisUtils.toBytes(session));
-
-            // 设置超期时间
-            int timeoutSeconds = (int) (session.getTimeout() / 1000);
-            jedis.expire((sessionKeyPrefix + session.getId()), timeoutSeconds);
-
-            logger.debug("update {} {}", session.getId(), request != null ? request.getRequestURI() : "");
-        } catch (Exception e) {
-            logger.error("update {} {}", session.getId(), request != null ? request.getRequestURI() : "", e);
-        } finally {
-            JedisUtils.returnResource(jedis);
-        }
+        logger.debug("update {} {}", session.getId(), request != null ? request.getRequestURI() : "");
     }
 
     @Override
     public void delete(Session session) {
         if (session == null || session.getId() == null) {
+            logger.error("session or session id is null");
             return;
         }
+        JedisUtils.hdel(JedisUtils.getBytesKey(sessionKeyPrefix), JedisUtils.getBytesKey(session.getId()));
+        JedisUtils.delObject(sessionKeyPrefix + session.getId());
 
-        JedisCluster jedis = null;
-        try {
-            jedis = JedisUtils.getResource();
-
-            jedis.hdel(JedisUtils.getBytesKey(sessionKeyPrefix), JedisUtils.getBytesKey(session.getId().toString()));
-            jedis.del(JedisUtils.getBytesKey(sessionKeyPrefix + session.getId()));
-
-            logger.debug("delete {} ", session.getId());
-        } catch (Exception e) {
-            logger.error("delete {} ", session.getId(), e);
-        } finally {
-            JedisUtils.returnResource(jedis);
-        }
+        logger.debug("delete {} ", session.getId());
     }
 
     @Override
@@ -136,67 +114,58 @@ public class JedisSessionDAO extends AbstractSessionDAO implements SessionDAO {
     public Collection<Session> getActiveSessions(boolean includeLeave, Object principal, Session filterSession) {
         Set<Session> sessions = Sets.newHashSet();
 
-        JedisCluster jedis = null;
-        try {
-            jedis = JedisUtils.getResource();
-            Map<String, String> map = jedis.hgetAll(sessionKeyPrefix);
-            for (Map.Entry<String, String> e : map.entrySet()) {
-                if (StringUtils.isNotBlank(e.getKey()) && StringUtils.isNotBlank(e.getValue())) {
+        Map<String, String> map = JedisUtils.hgetAll(sessionKeyPrefix);
+        for (Map.Entry<String, String> e : map.entrySet()) {
+            if (StringUtils.isNotBlank(e.getKey()) && StringUtils.isNotBlank(e.getValue())) {
 
-                    String[] ss = StringUtils.split(e.getValue(), "|");
-                    if (ss != null && ss.length == 3) {// jedis.exists(sessionKeyPrefix + e.getKey())){
-                        // Session session = (Session)JedisUtils.toObject(jedis.get(JedisUtils.getBytesKey(sessionKeyPrefix + e.getKey())));
-                        SimpleSession session = new SimpleSession();
-                        session.setId(e.getKey());
-                        session.setAttribute("principalId", ss[0]);
-                        session.setTimeout(Long.valueOf(ss[1]));
-                        session.setLastAccessTime(new Date(Long.valueOf(ss[2])));
-                        try {
-                            // 验证SESSION
-                            session.validate();
+                String[] ss = StringUtils.split(e.getValue(), "|");
+                if (ss != null && ss.length == 3) {
+                    SimpleSession session = new SimpleSession();
+                    session.setId(e.getKey());
+                    session.setAttribute("principalId", ss[0]);
+                    session.setTimeout(Long.valueOf(ss[1]));
+                    session.setLastAccessTime(new Date(Long.valueOf(ss[2])));
+                    try {
+                        // 验证SESSION
+                        session.validate();
 
-                            boolean isActiveSession = false;
-                            // 不包括离线并符合最后访问时间小于等于3分钟条件。
-                            if (includeLeave || DateUtils.pastMinutes(session.getLastAccessTime()) <= 3) {
+                        boolean isActiveSession = false;
+                        // 不包括离线并符合最后访问时间小于等于3分钟条件。
+                        if (includeLeave || DateUtils.pastMinutes(session.getLastAccessTime()) <= 3) {
+                            isActiveSession = true;
+                        }
+                        // 符合登陆者条件。
+                        if (principal != null) {
+                            PrincipalCollection pc = (PrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+                            if (principal.toString().equals(pc != null ? pc.getPrimaryPrincipal().toString() : StringUtils.EMPTY)) {
                                 isActiveSession = true;
                             }
-                            // 符合登陆者条件。
-                            if (principal != null) {
-                                PrincipalCollection pc = (PrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
-                                if (principal.toString().equals(pc != null ? pc.getPrimaryPrincipal().toString() : StringUtils.EMPTY)) {
-                                    isActiveSession = true;
-                                }
-                            }
-                            // 过滤掉的SESSION
-                            if (filterSession != null && filterSession.getId().equals(session.getId())) {
-                                isActiveSession = false;
-                            }
-                            if (isActiveSession) {
-                                sessions.add(session);
-                            }
+                        }
+                        // 过滤掉的SESSION
+                        if (filterSession != null && filterSession.getId().equals(session.getId())) {
+                            isActiveSession = false;
+                        }
+                        if (isActiveSession) {
+                            sessions.add(session);
+                        }
 
-                        }
-                        // SESSION验证失败
-                        catch (Exception e2) {
-                            jedis.hdel(sessionKeyPrefix, e.getKey());
-                        }
                     }
-                    // 存储的SESSION不符合规则
-                    else {
-                        jedis.hdel(sessionKeyPrefix, e.getKey());
+                    // SESSION验证失败
+                    catch (Exception e2) {
+                        JedisUtils.hdel(JedisUtils.getBytesKey(sessionKeyPrefix), JedisUtils.getBytesKey(e.getKey()));
                     }
                 }
-                // 存储的SESSION无Value
-                else if (StringUtils.isNotBlank(e.getKey())) {
-                    jedis.hdel(sessionKeyPrefix, e.getKey());
+                // 存储的SESSION不符合规则
+                else {
+                    JedisUtils.hdel(JedisUtils.getBytesKey(sessionKeyPrefix), JedisUtils.getBytesKey(e.getKey()));
                 }
             }
-            logger.info("getActiveSessions size: {} ", sessions.size());
-        } catch (Exception e) {
-            logger.error("getActiveSessions", e);
-        } finally {
-            JedisUtils.returnResource(jedis);
+            // 存储的SESSION无Value
+            else if (StringUtils.isNotBlank(e.getKey())) {
+                JedisUtils.hdel(JedisUtils.getBytesKey(sessionKeyPrefix), JedisUtils.getBytesKey(e.getKey()));
+            }
         }
+        logger.info("getActiveSessions size: {} ", sessions.size());
         return sessions;
     }
 
@@ -233,19 +202,8 @@ public class JedisSessionDAO extends AbstractSessionDAO implements SessionDAO {
             return s;
         }
 
-        Session session = null;
-        JedisCluster jedis = null;
-        try {
-            jedis = JedisUtils.getResource();
-//			if (jedis.exists(sessionKeyPrefix + sessionId)){
-            session = (Session) JedisUtils.toObject(jedis.get(JedisUtils.getBytesKey(sessionKeyPrefix + sessionId)));
-//			}
-            logger.debug("doReadSession {} {}", sessionId, request != null ? request.getRequestURI() : "");
-        } catch (Exception e) {
-            logger.error("doReadSession {} {}", sessionId, request != null ? request.getRequestURI() : "", e);
-        } finally {
-            JedisUtils.returnResource(jedis);
-        }
+        Session session = (Session) JedisUtils.getObject(sessionKeyPrefix + sessionId);
+        logger.debug("doReadSession {} {}", sessionId, request != null ? request.getRequestURI() : "");
 
         if (request != null && session != null) {
             request.setAttribute("session_" + sessionId, session);
