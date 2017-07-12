@@ -71,16 +71,16 @@ public class dictAction extends BaseAction {
         }
         model.addAttribute("typeList", typeList);
         Example example = new Example(Dict.class);
-        if (object.getOrderBy() != null) {
+        if (StringUtils.isNotEmpty(object.getOrderBy())) {
             example.setOrderByClause(object.getOrderBy());
         } else {
             example.setOrderByClause("create_date DESC");
         }
         Example.Criteria criteria = example.createCriteria();
-        if (object.getDescription() != null) {
+        if (StringUtils.isNotEmpty(object.getDescription())) {
             criteria.andLike("description", "%" + object.getDescription() + "%");
         }
-        if (object.getType() != null) {
+        if (StringUtils.isNotEmpty(object.getType())) {
             criteria.andEqualTo("type", object.getType());
         }
         PageInfo<Dict> page = dictService.getPage(object, example);

@@ -72,10 +72,10 @@ public class CommentAction extends BaseAction {
         example.setOrderByClause("create_date desc");
 
         Example.Criteria criteria = example.createCriteria();
-        if (object.getTitle() != null) {
+        if (StringUtils.isNotEmpty(object.getTitle())) {
             criteria.andLike("title", "%" + object.getTitle() + "%");
         }
-        if (object.getDelFlag() != null) {
+        if (StringUtils.isNotEmpty(object.getDelFlag())) {
             criteria.andEqualTo("delFlag", object.getDelFlag());
         }
         PageInfo<Comment> page = commentService.getPage(object, example);

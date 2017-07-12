@@ -68,13 +68,13 @@ public class GuestbookAction extends BaseAction {
         Example example = new Example(Guestbook.class);
         example.setOrderByClause("create_date desc");
         Example.Criteria criteria = example.createCriteria();
-        if (object.getContent() != null) {
+        if (StringUtils.isNotEmpty(object.getContent())) {
             criteria.andLike("content", "%" + object.getContent() + "%");
         }
-        if (object.getType() != null) {
+        if (StringUtils.isNotEmpty(object.getType())) {
             criteria.andEqualTo("type", object.getType());
         }
-        if (object.getDelFlag() != null) {
+        if (StringUtils.isNotEmpty(object.getDelFlag())) {
             criteria.andEqualTo("delFlag", object.getDelFlag());
         }
 

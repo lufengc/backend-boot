@@ -7,11 +7,11 @@ package com.bdfint.backend.modules.cms.action;
 import com.bdfint.backend.framework.common.BaseAction;
 import com.bdfint.backend.framework.common.Param;
 import com.bdfint.backend.framework.util.CookieUtils;
+import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.cms.bean.Site;
 import com.bdfint.backend.modules.cms.service.SiteService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import com.github.pagehelper.PageInfo;
-import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,10 +69,10 @@ public class SiteAction extends BaseAction {
     public String list(Model model, Site object, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Example example = new Example(Site.class);
         Example.Criteria criteria = example.createCriteria();
-        if (object.getName() != null) {
+        if (StringUtils.isNotEmpty(object.getName())) {
             criteria.andLike("name", "%" + object.getName() + "%");
         }
-        if (object.getDelFlag() != null) {
+        if (StringUtils.isNotEmpty(object.getDelFlag())) {
             criteria.andEqualTo("delFlag", object.getDelFlag());
         }
         PageInfo<Site> page = siteService.getPage(object, example);

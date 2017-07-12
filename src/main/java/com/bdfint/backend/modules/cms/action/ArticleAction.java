@@ -98,14 +98,14 @@ public class ArticleAction extends BaseAction {
         String conditions = "del_flag <> 1";
         //根据当前组织机构ID查询数据
         if (StringUtils.isNotEmpty(object.getCategoryId())) {
-            String ids = object.getCategoryId();
+            StringBuilder ids = new StringBuilder(object.getCategoryId());
             List<Category> categories = categoryService.getByParentIdsLike(object.getCategoryId());
             if (categories != null && categories.size() > 0) {
                 for (Category categorie : categories) {
-                    ids += "," + categorie.getId();
+                    ids.append(",").append(categorie.getId());
                 }
             }
-            conditions += " AND category_id in(" + StringUtils.idsToString(ids) + ")";
+            conditions += " AND category_id in(" + StringUtils.idsToString(ids.toString()) + ")";
         }
 
         if (StringUtils.isNotEmpty(object.getTitle())) {

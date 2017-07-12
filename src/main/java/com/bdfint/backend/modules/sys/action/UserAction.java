@@ -99,19 +99,19 @@ public class UserAction extends BaseAction {
             throws Exception {
         Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
-        if (object.getOrderBy() != null) {
+        if (StringUtils.isNotEmpty(object.getOrderBy())) {
             example.setOrderByClause(object.getOrderBy());
         } else {
             example.setOrderByClause("create_date DESC");
         }
 
-        if (object.getLoginName() != null) {
+        if (StringUtils.isNotEmpty(object.getLoginName())) {
             criteria.andLike("loginName", "%" + object.getLoginName() + "%");
         }
-        if (object.getName() != null) {
+        if (StringUtils.isNotEmpty(object.getName())) {
             criteria.andLike("name", "%" + object.getName() + "%");
         }
-        if (object.getMobile() != null) {
+        if (StringUtils.isNotEmpty(object.getMobile())) {
             criteria.andLike("mobile", "%" + object.getMobile() + "%");
         }
         //根据当前组织机构ID查询数据
