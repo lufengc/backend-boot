@@ -112,7 +112,7 @@
                 <iframe class="J_iframe" name="iframe0" width="100%" height="98%" src="${ctx}/home" frameborder="0" data-id="${ctx}/home" seamless></iframe>
             </div>
             <div class="footer">
-                <div class="pull-left"><a href="http://www.zlgx.vip">http://www.zsteel.cc</a> &copy; 2016-2026</div>
+                <div class="pull-left"><a href="http://www.zlgx.vip">http://www.lufengc.com</a> &copy; 2016-2026</div>
             </div>
         </div>
         <!--右侧部分结束-->
