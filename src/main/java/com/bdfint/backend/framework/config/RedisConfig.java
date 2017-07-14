@@ -25,6 +25,7 @@ import java.util.Set;
 @ConfigurationProperties(prefix = "spring.redis")
 public class RedisConfig {
 
+    private boolean isCluster;
     private String keyPrefix;
     private String host;
     private int port;
@@ -32,6 +33,14 @@ public class RedisConfig {
     private String password;
     private RedisConfig.Pool pool;
     private RedisConfig.Cluster cluster;
+
+    public boolean isCluster() {
+        return isCluster;
+    }
+
+    public void setCluster(boolean cluster) {
+        isCluster = cluster;
+    }
 
     public String getKeyPrefix() {
         return keyPrefix;
@@ -171,6 +180,9 @@ public class RedisConfig {
 
     @Bean
     public JedisCluster getJedisCluster() {
+        if (!isCluster) {
+            return null;
+        }
         JedisPoolConfig config = new JedisPoolConfig();
         config.setMaxTotal(pool.getMaxActive());
         config.setMaxIdle(pool.getMaxIdle());
@@ -183,7 +195,6 @@ public class RedisConfig {
             String[] ipPortPair = ipPort.split(":");
             hostAndPorts.add(new HostAndPort(ipPortPair[0].trim(), Integer.valueOf(ipPortPair[1].trim())));
         }
-
         return new JedisCluster(hostAndPorts, timeout, cluster.getMaxRedirects(), config);
     }
 

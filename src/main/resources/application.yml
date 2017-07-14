@@ -41,6 +41,7 @@ spring:
       suffix: .jsp
 
   redis:
+    is-cluster: false
     key-prefix: backend-boot
     host: localhost
     port: 6379
