@@ -118,7 +118,7 @@ public class Global {
     public static String getFrontPath() {
         String path = systemProperties.getFrontPath();
         if (StringUtils.isBlank(path)) {
-            path = "/";
+            path = "";
         }
         return path;
     }

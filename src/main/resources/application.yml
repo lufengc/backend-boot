@@ -89,7 +89,7 @@ urlSuffix: .html
 #管理基础路径
 adminPath: /admin
 #前端基础路径
-frontPath: /f
+frontPath:
 #踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
 userKickoutAfter: false
 #同一个帐号最大会话数 默认1
