@@ -1055,9 +1055,9 @@ public class JedisUtils {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            logger.debug("getResource.", jedis);
+            logger.debug("getResource.{}", jedis);
         } catch (JedisException e) {
-            logger.warn("getResource.", e);
+            logger.warn("getResource.{}", e);
             returnResource(jedis);
             throw e;
         }
