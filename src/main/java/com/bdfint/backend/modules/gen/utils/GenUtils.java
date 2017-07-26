@@ -6,9 +6,11 @@ package com.bdfint.backend.modules.gen.utils;
 
 import com.bdfint.backend.framework.common.Global;
 import com.bdfint.backend.framework.mapper.JaxbMapper;
-import com.bdfint.backend.framework.util.*;
+import com.bdfint.backend.framework.util.DateUtils;
+import com.bdfint.backend.framework.util.FileUtils;
+import com.bdfint.backend.framework.util.FreeMarkers;
+import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.gen.bean.*;
-import com.bdfint.backend.modules.sys.bean.User;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -127,12 +129,12 @@ public class GenUtils {
                 column.setShowType("userselect");
             }
             // 部门
-            else if (StringUtils.startsWithIgnoreCase(column.getName(), "office_id")){
+            else if (StringUtils.startsWithIgnoreCase(column.getName(), "office_id")) {
                 column.setJavaField(column.getJavaField().replaceAll("Id", ".id|name"));
                 column.setShowType("officeselect");
             }
             // 区域
-            else if (StringUtils.startsWithIgnoreCase(column.getName(), "area_id")){
+            else if (StringUtils.startsWithIgnoreCase(column.getName(), "area_id")) {
                 column.setJavaField(column.getJavaField().replaceAll("Id", ".id|name"));
                 column.setShowType("areaselect");
             }

@@ -19,6 +19,7 @@ public interface MenuService extends BaseService<Menu> {
 
     /**
      * 保存或更新操作
+     *
      * @param object Object
      */
     String save(Menu object) throws Exception;
@@ -49,7 +50,8 @@ public interface MenuService extends BaseService<Menu> {
 
     /**
      * 更新排序
-     * @param ids Integer[]
+     *
+     * @param ids   Integer[]
      * @param sorts Integer[]
      */
     void updateMenuSort(String[] ids, Integer[] sorts) throws Exception;

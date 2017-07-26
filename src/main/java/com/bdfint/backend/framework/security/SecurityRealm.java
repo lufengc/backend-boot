@@ -157,7 +157,6 @@ public class SecurityRealm extends AuthorizingRealm {
 
     /**
      * 授权验证方法
-     *
      */
     private void authorizationValidate(Permission permission) {
         // 模块授权预留接口
@@ -186,7 +185,7 @@ public class SecurityRealm extends AuthorizingRealm {
      * @Deprecated 不需要清空，授权缓存保存到session中
      */
     /*@Deprecated
-	public void clearAllCachedAuthorizationInfo() {
+    public void clearAllCachedAuthorizationInfo() {
 		Cache<Object, AuthorizationInfo> cache = getAuthorizationCache();
 		if (cache != null) {
 			for (Object key : cache.keys()) {

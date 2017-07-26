@@ -5,11 +5,8 @@
 package com.bdfint.backend.modules.sys.action;
 
 import com.bdfint.backend.framework.common.Global;
-import com.bdfint.backend.framework.util.DateUtils;
-import com.bdfint.backend.framework.util.FileUtils;
 import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.sys.utils.UploadUtils;
-import com.bdfint.backend.modules.sys.utils.UserUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,11 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
 
 /**
  * 文件上传action

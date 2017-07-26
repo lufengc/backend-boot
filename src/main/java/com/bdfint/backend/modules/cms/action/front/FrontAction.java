@@ -8,7 +8,6 @@ import com.bdfint.backend.framework.common.BaseAction;
 import com.bdfint.backend.framework.common.BaseEntity;
 import com.bdfint.backend.framework.util.UserAgentUtils;
 import com.bdfint.backend.modules.cms.bean.Article;
-import com.bdfint.backend.modules.cms.bean.ArticleData;
 import com.bdfint.backend.modules.cms.bean.Guestbook;
 import com.bdfint.backend.modules.cms.service.ArticleService;
 import com.bdfint.backend.modules.cms.service.GuestbookService;

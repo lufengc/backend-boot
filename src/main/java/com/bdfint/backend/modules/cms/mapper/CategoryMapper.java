@@ -5,7 +5,6 @@
 package com.bdfint.backend.modules.cms.mapper;
 
 import com.bdfint.backend.framework.common.CommonMapper;
-import com.bdfint.backend.modules.cms.bean.Article;
 import com.bdfint.backend.modules.cms.bean.Category;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;

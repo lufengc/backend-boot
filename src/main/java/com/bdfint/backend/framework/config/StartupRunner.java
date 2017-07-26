@@ -27,7 +27,7 @@ public class StartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        if(systemProperties.isAllowStartupEmptyCache()){
+        if (systemProperties.isAllowStartupEmptyCache()) {
             JedisUtils.delAll();
             logger.info("所有缓存数据已清除");
         }

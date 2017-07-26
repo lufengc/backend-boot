@@ -18,15 +18,16 @@ import java.util.UUID;
  */
 public class SessionIdGen implements SessionIdGenerator {
 
-	/** 
-	 * 实现generateId方法
-	 * @param session session
-	 * @return Serializable
-	 * @see SessionIdGenerator#generateId(Session)
-	 */
-	@Override
-	public Serializable generateId(Session session) {
-		return UUID.randomUUID().toString();
-	}
+    /**
+     * 实现generateId方法
+     *
+     * @param session session
+     * @return Serializable
+     * @see SessionIdGenerator#generateId(Session)
+     */
+    @Override
+    public Serializable generateId(Session session) {
+        return UUID.randomUUID().toString();
+    }
 
 }

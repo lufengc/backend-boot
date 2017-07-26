@@ -9,16 +9,12 @@ import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.sys.bean.User;
 import com.bdfint.backend.modules.sys.mapper.UserMapper;
-import com.bdfint.backend.modules.sys.service.RoleService;
 import com.bdfint.backend.modules.sys.service.UserService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -162,7 +158,7 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         //更新用户角色关联
         userMapper.insertUserRole(object);
         // 清除当前用户缓存
-        if (object.getLoginName().equals(UserUtils.getUser().getLoginName())){
+        if (object.getLoginName().equals(UserUtils.getUser().getLoginName())) {
             UserUtils.clearCache();
         }
         // 清除用户缓存

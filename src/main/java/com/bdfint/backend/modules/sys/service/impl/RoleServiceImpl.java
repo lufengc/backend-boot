@@ -5,7 +5,6 @@
 package com.bdfint.backend.modules.sys.service.impl;
 
 import com.bdfint.backend.framework.common.BaseServiceImpl;
-import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.sys.bean.Role;
 import com.bdfint.backend.modules.sys.bean.User;

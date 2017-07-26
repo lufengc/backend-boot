@@ -24,5 +24,5 @@ public interface MenuMapper extends CommonMapper<Menu> {
 
     List<Menu> selectMenuByRoleId(String roleId);
 
-    void deleteRoleMenuByMenuIds(@Param("array") String [] ids);
+    void deleteRoleMenuByMenuIds(@Param("array") String[] ids);
 }

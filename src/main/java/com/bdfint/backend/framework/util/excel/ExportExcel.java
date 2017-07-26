@@ -375,7 +375,7 @@ public class ExportExcel {
                     }
                     // If is oa, get oa label
                     if (StringUtils.isNotBlank(ef.dictType())) {
-                        val = DictUtils.getDictLabel(val==null?"":val.toString(), ef.dictType(), "");
+                        val = DictUtils.getDictLabel(val == null ? "" : val.toString(), ef.dictType(), "");
                     }
                 } catch (Exception ex) {
                     // Failure to ignore
