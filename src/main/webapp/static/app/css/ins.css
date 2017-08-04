@@ -8276,3 +8276,7 @@ input[type=checkbox], input[type=radio] {
 .controls span {
     padding-right: 8px;
 }
+
+.checkboxdiv span {
+    padding-right: 8px;
+}
