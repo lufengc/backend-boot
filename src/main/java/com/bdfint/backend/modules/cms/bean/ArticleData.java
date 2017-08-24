@@ -4,8 +4,6 @@
 package com.bdfint.backend.modules.cms.bean;
 
 import com.bdfint.backend.framework.common.BaseEntity;
-import com.bdfint.backend.framework.common.DataEntity;
-import com.bdfint.backend.framework.common.Global;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 

@@ -106,16 +106,16 @@ public class GuestbookAction extends BaseAction {
     @RequestMapping(value = "save")
     @RequiresPermissions("cms:guestbook:edit")
     protected String save(Model model, Guestbook object, RedirectAttributes redirectAttributes) throws Exception {
-        if (!beanValidator(model, object)){
+        if (!beanValidator(model, object)) {
             return form(model, object);
         }
-        if (object.getReUserId() == null){
+        if (object.getReUserId() == null) {
             object.setReUserId(UserUtils.getUserId());
             object.setReDate(new Date());
         }
         guestbookService.save(object);
         addMessage(redirectAttributes, DictUtils.getDictLabel(object.getDelFlag(), "cms_del_flag", "保存")
-                +"留言'" + object.getName() + "'成功");
+                + "留言'" + object.getName() + "'成功");
         return "redirect:" + adminPath + "/cms/guestbook/?repage&status=2";
     }
 

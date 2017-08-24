@@ -20,7 +20,7 @@ import java.util.List;
 @Repository
 public interface OfficeMapper extends CommonMapper<Office> {
 
-    void deleteRoleOfficeByOfficeIds(@Param("array") String [] ids);
+    void deleteRoleOfficeByOfficeIds(@Param("array") String[] ids);
 
     List<Office> getOfficeByUserId(String userId);
 }

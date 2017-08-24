@@ -4,7 +4,6 @@
 package com.bdfint.backend.modules.cms.service.impl;
 
 import com.bdfint.backend.framework.common.BaseServiceImpl;
-import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.cms.bean.Category;
 import com.bdfint.backend.modules.cms.bean.Site;
@@ -47,7 +46,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
             for (Category next : list) {
                 next.setOfficeName(officeService.get(next.getOfficeId()).getName());
             }
-            if(list.size() > 0){
+            if (list.size() > 0) {
                 UserUtils.putCache(CACHE_CATEGORY_LIST, list);
             }
         }

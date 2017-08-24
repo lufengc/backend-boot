@@ -11,24 +11,24 @@ package com.bdfint.backend.framework.common;
  * @version 2016-01-15 09:56:22
  */
 public class Param extends BaseEntity<Param> {
-	
-	private String ids;
 
-	private String checkedIds;
+    private String ids;
 
-	public String getIds() {
-		return ids;
-	}
+    private String checkedIds;
 
-	public void setIds(String ids) {
-		this.ids = ids;
-	}
+    public String getIds() {
+        return ids;
+    }
 
-	public String getCheckedIds() {
-		return checkedIds;
-	}
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
 
-	public void setCheckedIds(String checkedIds) {
-		this.checkedIds = checkedIds;
-	}
+    public String getCheckedIds() {
+        return checkedIds;
+    }
+
+    public void setCheckedIds(String checkedIds) {
+        this.checkedIds = checkedIds;
+    }
 }

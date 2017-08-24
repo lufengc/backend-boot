@@ -60,14 +60,16 @@ public interface UserService extends BaseService<User> {
 
     /**
      * 更新用户状态
-     * @param ids 用户ids
+     *
+     * @param ids  用户ids
      * @param user User
      */
     int updateStatus(String ids, User user) throws Exception;
 
     /**
      * 初始化密码
-     * @param ids 用户ids
+     *
+     * @param ids      用户ids
      * @param password 密码
      */
     int initPassword(String ids, String password) throws Exception;

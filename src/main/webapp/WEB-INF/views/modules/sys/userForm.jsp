@@ -66,8 +66,11 @@
                    </td>
                    <td class="active"><label class="pull-right"><span style="color: red; ">*</span>用户角色:</label></td>
                    <td>
-                       <div><form:checkboxes path="roleIdList" items="${fns:getRoleList()}" itemLabel="name" itemValue="id" htmlEscape="false" cssClass="i-checks required"/></div>
-                       <div><label class="error" id="roleIdList-error"></label></div>
+                       <div class="checkboxdiv"><form:checkboxes path="roleIdList" items="${fns:getRoleList()}"
+                                                                 itemLabel="name" itemValue="id" htmlEscape="false"
+                                                                 cssClass="i-checks required"/></div>
+                       <label id="roleIdList-error" class="error" for="roleIdList"
+                              style="display: inline-block;"></label>
                    </td>
                </tr>
 		      <tr>

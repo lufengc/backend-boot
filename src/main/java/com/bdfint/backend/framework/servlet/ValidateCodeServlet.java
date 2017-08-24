@@ -86,7 +86,7 @@ public class ValidateCodeServlet extends HttpServlet {
         Graphics g = image.getGraphics();
 
 		/*
-		 * 生成背景
+         * 生成背景
 		 */
         createBackground(g);
 

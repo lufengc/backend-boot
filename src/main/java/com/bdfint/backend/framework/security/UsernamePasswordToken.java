@@ -12,32 +12,32 @@ package com.bdfint.backend.framework.security;
  */
 public class UsernamePasswordToken extends org.apache.shiro.authc.UsernamePasswordToken {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private String captcha;
-	private boolean mobileLogin;
-	
-	public UsernamePasswordToken() {
-		super();
-	}
+    private String captcha;
+    private boolean mobileLogin;
 
-	public UsernamePasswordToken(String username, char[] password,
-			boolean rememberMe, String host, String captcha, boolean mobileLogin) {
-		super(username, password, rememberMe, host);
-		this.captcha = captcha;
-		this.mobileLogin = mobileLogin;
-	}
+    public UsernamePasswordToken() {
+        super();
+    }
 
-	public String getCaptcha() {
-		return captcha;
-	}
+    public UsernamePasswordToken(String username, char[] password,
+                                 boolean rememberMe, String host, String captcha, boolean mobileLogin) {
+        super(username, password, rememberMe, host);
+        this.captcha = captcha;
+        this.mobileLogin = mobileLogin;
+    }
 
-	public void setCaptcha(String captcha) {
-		this.captcha = captcha;
-	}
+    public String getCaptcha() {
+        return captcha;
+    }
 
-	public boolean isMobileLogin() {
-		return mobileLogin;
-	}
-	
+    public void setCaptcha(String captcha) {
+        this.captcha = captcha;
+    }
+
+    public boolean isMobileLogin() {
+        return mobileLogin;
+    }
+
 }

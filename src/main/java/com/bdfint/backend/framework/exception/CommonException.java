@@ -12,9 +12,9 @@ package com.bdfint.backend.framework.exception;
  */
 public class CommonException extends BaseException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	{
+    {
         this.setSubClass(this.getClass());
     }
 

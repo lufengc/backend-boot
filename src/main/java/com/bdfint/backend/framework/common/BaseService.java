@@ -67,7 +67,7 @@ public interface BaseService<T> {
 
 
     /**
-     * @param object 要查询的对象
+     * @param object  要查询的对象
      * @param example Example
      * @return PageInfo<T>
      */

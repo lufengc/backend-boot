@@ -98,7 +98,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseSe
     /**
      * 分页查询
      *
-     * @param object 分页对象
+     * @param object  分页对象
      * @param example Example
      * @return Page<T>
      */

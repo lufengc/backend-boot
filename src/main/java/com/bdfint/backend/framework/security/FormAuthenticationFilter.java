@@ -96,7 +96,7 @@ public class FormAuthenticationFilter extends org.apache.shiro.web.filter.authc.
         if (p != null && !p.isMobileLogin()) {
             // 登录成功后，记录上次登录的时间和IP
             User user = UserUtils.getUser();
-            if(user.getLoginDate() == null){
+            if (user.getLoginDate() == null) {
                 user.setLoginDate(new Date());
             }
             UserUtils.putCache("loginTime", DateUtils.formatDateTime(user.getLoginDate()));

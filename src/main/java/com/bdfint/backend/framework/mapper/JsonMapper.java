@@ -21,8 +21,9 @@ import java.io.IOException;
 import java.util.TimeZone;
 
 /**
- *  简单封装Jackson，实现JSON String<->Java Object的Mapper.
- *  封装不同的输出风格, 使用不同的builder函数创建实例.
+ * 简单封装Jackson，实现JSON String<->Java Object的Mapper.
+ * 封装不同的输出风格, 使用不同的builder函数创建实例.
+ *
  * @author calvin
  * @date 2013-01-15
  */
@@ -47,7 +48,7 @@ public class JsonMapper extends ObjectMapper {
         // 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
         this.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         // 空值处理为空串
-        this.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>(){
+        this.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {
             @Override
             public void serialize(Object value, JsonGenerator jgen,
                                   SerializerProvider provider) throws IOException,
@@ -56,7 +57,7 @@ public class JsonMapper extends ObjectMapper {
             }
         });
         // 进行HTML解码。
-        this.registerModule(new SimpleModule().addSerializer(String.class, new JsonSerializer<String>(){
+        this.registerModule(new SimpleModule().addSerializer(String.class, new JsonSerializer<String>() {
             @Override
             public void serialize(String value, JsonGenerator jgen,
                                   SerializerProvider provider) throws IOException,
@@ -72,7 +73,7 @@ public class JsonMapper extends ObjectMapper {
      * 创建只输出非Null且非Empty(如List.isEmpty)的属性到Json字符串的Mapper,建议在外部接口中使用.
      */
     public static JsonMapper getInstance() {
-        if (mapper == null){
+        if (mapper == null) {
             mapper = new JsonMapper().enableSimple();
         }
         return mapper;
@@ -82,7 +83,7 @@ public class JsonMapper extends ObjectMapper {
      * 创建只输出初始值被改变的属性到Json字符串的Mapper, 最节约的存储方式，建议在内部接口中使用。
      */
     public static JsonMapper nonDefaultMapper() {
-        if (mapper == null){
+        if (mapper == null) {
             mapper = new JsonMapper(JsonInclude.Include.NON_DEFAULT);
         }
         return mapper;
@@ -104,11 +105,12 @@ public class JsonMapper extends ObjectMapper {
 
     /**
      * 反序列化POJO或简单Collection如List<String>.
-     *
+     * <p>
      * 如果JSON字符串为Null或"null"字符串, 返回Null.
      * 如果JSON字符串为"[]", 返回空集合.
-     *
+     * <p>
      * 如需反序列化复杂Collection如List<MyBean>, 请使用fromJson(String,JavaType)
+     *
      * @see #fromJson(String, JavaType)
      */
     public <T> T fromJson(String jsonString, Class<T> clazz) {
@@ -125,6 +127,7 @@ public class JsonMapper extends ObjectMapper {
 
     /**
      * 反序列化复杂Collection如List<Bean>, 先使用函數createCollectionType构造类型,然后调用本函数.
+     *
      * @see #createCollectionType(Class, Class...)
      */
     @SuppressWarnings("unchecked")
@@ -211,20 +214,22 @@ public class JsonMapper extends ObjectMapper {
 
     /**
      * 对象转换为JSON字符串
+     *
      * @param object
      * @return
      */
-    public static String toJsonString(Object object){
+    public static String toJsonString(Object object) {
         return JsonMapper.getInstance().toJson(object);
     }
 
     /**
      * JSON字符串转换为对象
+     *
      * @param jsonString
      * @param clazz
      * @return
      */
-    public static Object fromJsonString(String jsonString, Class<?> clazz){
+    public static Object fromJsonString(String jsonString, Class<?> clazz) {
         return JsonMapper.getInstance().fromJson(jsonString, clazz);
     }
 

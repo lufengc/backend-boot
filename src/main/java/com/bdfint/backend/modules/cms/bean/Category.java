@@ -3,7 +3,6 @@
  */
 package com.bdfint.backend.modules.cms.bean;
 
-import com.bdfint.backend.framework.common.Global;
 import com.bdfint.backend.framework.common.TreeEntity;
 import com.bdfint.backend.modules.cms.utils.CmsUtils;
 import com.google.common.collect.Lists;
