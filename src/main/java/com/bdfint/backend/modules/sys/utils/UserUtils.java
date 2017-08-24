@@ -80,7 +80,7 @@ public class UserUtils {
             user.setRoleList(roleService.getRoleByUserId(user.getId()));
             JedisUtils.setObject(USER_CACHE_ + USER_CACHE_LOGIN_NAME_ + loginName, user, 0);
         }
-        return userService.getUserByLoginName(loginName);
+        return user;
     }
 
     /**
