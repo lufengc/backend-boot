@@ -189,4 +189,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     }
 
 
+    @Override
+    public void dataLoad() {
+        System.out.println("23132312412412412412412");
+    }
 }

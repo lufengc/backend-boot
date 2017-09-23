@@ -14,8 +14,8 @@ import java.io.StringWriter;
  * @author lufengcheng
  * @date 2016-01-15
  */
+@SuppressWarnings("unchecked")
 public class Exceptions {
-
 
     /**
      * 将CheckedException转换为UncheckedException.

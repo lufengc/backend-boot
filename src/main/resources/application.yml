@@ -10,11 +10,29 @@ logging:
     root: info
     com.bdfint.backend: debug
 
-druid:
-    driver-class-name: com.mysql.jdbc.Driver
+custom.datasource:
+  names: ds1,ds2
+  ds1.type: com.alibaba.druid.pool.DruidDataSource
+  ds1.driverClassName: com.mysql.jdbc.Driver
+  ds1.url: jdbc:mysql://10.82.12.225:3306/zlgx_dev?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+  ds1.username: root
+  ds1.password: cheng@@
+
+  ds2.type: com.alibaba.druid.pool.DruidDataSource
+  ds2.driverClassName: com.mysql.jdbc.Driver
+  ds2.url: jdbc:mysql://10.82.12.225:3306/zlgx_dev?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+  ds2.username: root
+  ds2.password: cheng@@
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/backend-boot?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
+
+    # set pool
     initialSize: 1
     minIdle: 1
     maxActive: 20
@@ -34,7 +52,7 @@ druid:
       loginUsername: admin
       loginPassword: admin
 
-spring:
+
   mvc:
     view:
       prefix: /WEB-INF/views/
@@ -76,8 +94,6 @@ pagehelper:
   params: count=countSql
 
 
-
-
 #文件上传路径 空为系统默认配置
 fileUploadPath:
 #文件服务器地址 空为系统默认配置
@@ -97,7 +113,7 @@ userMaxSession: 2
 #是否不允许刷新主页，不允许情况下，刷新主页会导致重新登录
 notAllowRefreshIndex: false
 #是否允许启动清空redis缓存，允许情况下，项目启动会清空所有缓存
-allowStartupEmptyCache: true
+allowStartupEmptyCache: false
 #单点登录CAS设置
 casServerUrl: http://127.0.0.1:8180/cas
 casProjectUrl: http://127.0.0.1:8080/a

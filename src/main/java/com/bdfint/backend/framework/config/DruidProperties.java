@@ -10,12 +10,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author fengcheng
  * @version 2017/2/28
  */
-@ConfigurationProperties(prefix = "druid")
+@ConfigurationProperties(prefix = "spring.datasource")
 public class DruidProperties {
+
+    private String type;
+    private String driverClassName;
     private String url;
     private String username;
     private String password;
-    private String driverClassName;
+
     private int initialSize;
     private int minIdle;
     private int maxActive;
@@ -29,7 +32,63 @@ public class DruidProperties {
     private boolean poolPreparedStatements;
     private int maxPoolPreparedStatementPerConnectionSize;
     private String filters;
-    private DruidProperties.Monitor monitor;
+
+    private Monitor monitor;
+
+    public class Monitor {
+        private String allow;
+        private String deny;
+        private String loginUsername;
+        private String loginPassword;
+
+        public String getAllow() {
+            return allow;
+        }
+
+        public void setAllow(String allow) {
+            this.allow = allow;
+        }
+
+        public String getDeny() {
+            return deny;
+        }
+
+        public void setDeny(String deny) {
+            this.deny = deny;
+        }
+
+        public String getLoginUsername() {
+            return loginUsername;
+        }
+
+        public void setLoginUsername(String loginUsername) {
+            this.loginUsername = loginUsername;
+        }
+
+        public String getLoginPassword() {
+            return loginPassword;
+        }
+
+        public void setLoginPassword(String loginPassword) {
+            this.loginPassword = loginPassword;
+        }
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDriverClassName() {
+        return driverClassName;
+    }
+
+    public void setDriverClassName(String driverClassName) {
+        this.driverClassName = driverClassName;
+    }
 
     public String getUrl() {
         return url;
@@ -53,14 +112,6 @@ public class DruidProperties {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getDriverClassName() {
-        return driverClassName;
-    }
-
-    public void setDriverClassName(String driverClassName) {
-        this.driverClassName = driverClassName;
     }
 
     public int getInitialSize() {
@@ -143,7 +194,6 @@ public class DruidProperties {
         this.testOnReturn = testOnReturn;
     }
 
-
     public boolean isPoolPreparedStatements() {
         return poolPreparedStatements;
     }
@@ -175,44 +225,4 @@ public class DruidProperties {
     public void setMonitor(Monitor monitor) {
         this.monitor = monitor;
     }
-
-    public static class Monitor {
-        private String allow;
-        private String deny;
-        private String loginUsername;
-        private String loginPassword;
-
-        public String getAllow() {
-            return allow;
-        }
-
-        public void setAllow(String allow) {
-            this.allow = allow;
-        }
-
-        public String getDeny() {
-            return deny;
-        }
-
-        public void setDeny(String deny) {
-            this.deny = deny;
-        }
-
-        public String getLoginUsername() {
-            return loginUsername;
-        }
-
-        public void setLoginUsername(String loginUsername) {
-            this.loginUsername = loginUsername;
-        }
-
-        public String getLoginPassword() {
-            return loginPassword;
-        }
-
-        public void setLoginPassword(String loginPassword) {
-            this.loginPassword = loginPassword;
-        }
-    }
-
 }
