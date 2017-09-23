@@ -16,7 +16,7 @@ backend-boot是基于多个优秀的开源项目，高度整合封装而成的�
 * 布局框架：SiteMesh 2.4.2
 * 持久层框架：Mybatis 3.4.1 + Mapper 3.3.9
 * 分页插件：PageHelper 5.0.0
-* 数据库连接池：Alibaba Druid 1.0.5
+* 数据库连接池：Alibaba Druid 1.1.3 (支持多数据源)
 * 缓存框架：Redis（支持redis集群）
 * 日志管理：Logback
 * 数据库：Mysql
