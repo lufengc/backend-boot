@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.exceptions.JedisException;
 
 import java.util.*;
 
@@ -51,6 +50,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("hget {} = {}", key, value);
         return value;
     }
 
@@ -61,7 +61,7 @@ public class JedisUtils {
      * @return 值
      */
     public static Map<String, String> hgetAll(String key) {
-        Map<String, String> value = null;
+        Map<String, String> value;
         if (cluster != null) {
             value = cluster.hgetAll(key);
         } else {
@@ -72,6 +72,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("hgetAll {} = {}", key, value);
         return value;
     }
 
@@ -93,6 +94,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("get {} = {}", key, value);
         return value;
     }
 
@@ -115,6 +117,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("getObject {} = {}", key, value);
         return value;
     }
 
@@ -140,6 +143,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("set {} = {}", key, value);
         return result;
     }
 
@@ -162,6 +166,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("hset {} = {}", key, value);
         return result;
     }
 
@@ -187,6 +192,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("setObject {} = {}", key, value);
         return result;
     }
 
@@ -208,6 +214,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("hset {} = {}", key, value);
         return value;
     }
 
@@ -234,6 +241,7 @@ public class JedisUtils {
         for (byte[] bs : list) {
             value.add(toObject(bs));
         }
+        logger.debug("getObjectList {} = {}", key, value);
         return value;
     }
 
@@ -269,6 +277,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("setList {} = {}", key, value);
         return result;
     }
 
@@ -312,6 +321,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("setObjectList {} = {}", key, value);
         return result;
     }
 
@@ -334,6 +344,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("listAdd {} = {}", key, value);
         return result;
     }
 
@@ -364,6 +375,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("listObjectAdd {} = {}", key, value);
         return result;
     }
 
@@ -385,6 +397,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("getSet {} = {}", key, value);
         return value;
     }
 
@@ -414,7 +427,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
-
+        logger.debug("getObjectSet {} = {}", key, value);
         return value;
     }
 
@@ -450,6 +463,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("setSet {} = {}", key, value);
         return result;
     }
 
@@ -493,6 +507,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("setObjectSet {} = {}", key, value);
         return result;
     }
 
@@ -515,6 +530,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("setSetAdd {} = {}", key, value);
         return result;
     }
 
@@ -545,6 +561,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("setSetObjectAdd {} = {}", key, value);
         return result;
     }
 
@@ -559,19 +576,18 @@ public class JedisUtils {
         if (cluster != null) {
             if (cluster.exists(key)) {
                 value = cluster.hgetAll(key);
-                logger.debug("getMap {} = {}", key, value);
             }
         } else {
             Jedis jedis = getResource();
             try {
                 if (jedis.exists(key)) {
                     value = jedis.hgetAll(key);
-                    logger.debug("getMap {} = {}", key, value);
                 }
             } finally {
                 returnResource(jedis);
             }
         }
+        logger.debug("getMap {} = {}", key, value);
         return value;
     }
 
@@ -590,7 +606,6 @@ public class JedisUtils {
                 for (Map.Entry<byte[], byte[]> e : map.entrySet()) {
                     value.put(StringUtils.toString(e.getKey()), toObject(e.getValue()));
                 }
-                logger.debug("getObjectMap {} = {}", key, value);
             }
         } else {
             Jedis jedis = getResource();
@@ -601,12 +616,12 @@ public class JedisUtils {
                     for (Map.Entry<byte[], byte[]> e : map.entrySet()) {
                         value.put(StringUtils.toString(e.getKey()), toObject(e.getValue()));
                     }
-                    logger.debug("getObjectMap {} = {}", key, value);
                 }
             } finally {
                 returnResource(jedis);
             }
         }
+        logger.debug("getObjectMap {} = {}", key, value);
         return value;
     }
 
@@ -628,7 +643,6 @@ public class JedisUtils {
             if (cacheSeconds != 0) {
                 cluster.expire(key, cacheSeconds);
             }
-            logger.debug("setMap {} = {}", key, value);
         } else {
             Jedis jedis = getResource();
             try {
@@ -639,11 +653,11 @@ public class JedisUtils {
                 if (cacheSeconds != 0) {
                     jedis.expire(key, cacheSeconds);
                 }
-                logger.debug("setMap {} = {}", key, value);
             } finally {
                 returnResource(jedis);
             }
         }
+        logger.debug("setMap {} = {}", key, value);
         return result;
     }
 
@@ -687,6 +701,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("setObjectMap {} = {}", key, value);
         return result;
     }
 
@@ -709,6 +724,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("mapPut {} = {}", key, value);
         return result;
     }
 
@@ -739,6 +755,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("mapObjectPut {} = {}", key, value);
         return result;
     }
 
@@ -761,6 +778,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("mapRemove {} = {}", key, mapKey);
         return result;
     }
 
@@ -783,6 +801,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("mapObjectRemove {} = {}", key, mapKey);
         return result;
     }
 
@@ -805,6 +824,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("mapExists {} = {}", key, mapKey);
         return result;
     }
 
@@ -827,6 +847,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("mapObjectExists {} = {}", key, mapKey);
         return result;
     }
 
@@ -841,23 +862,18 @@ public class JedisUtils {
         if (cluster != null) {
             if (cluster.exists(key)) {
                 result = cluster.del(key);
-                logger.debug("del {}", key);
-            } else {
-                logger.debug("del {} not exists", key);
             }
         } else {
             Jedis jedis = getResource();
             try {
                 if (jedis.exists(key)) {
                     result = jedis.del(key);
-                    logger.debug("del {}", key);
-                } else {
-                    logger.debug("del {} not exists", key);
                 }
             } finally {
                 returnResource(jedis);
             }
         }
+        logger.debug("del {}", key);
         return result;
     }
 
@@ -872,23 +888,18 @@ public class JedisUtils {
         if (cluster != null) {
             if (cluster.exists(key)) {
                 result = cluster.hdel(key, field);
-                logger.debug("del {}", key);
-            } else {
-                logger.debug("del {} not exists", key);
             }
         } else {
             Jedis jedis = getResource();
             try {
                 if (jedis.exists(key)) {
                     result = jedis.hdel(key, field);
-                    logger.debug("del {}", key);
-                } else {
-                    logger.debug("del {} not exists", key);
                 }
             } finally {
                 returnResource(jedis);
             }
         }
+        logger.debug("del {}", key);
         return result;
     }
 
@@ -903,21 +914,18 @@ public class JedisUtils {
         if (cluster != null) {
             if (cluster.exists(getBytesKey(key))) {
                 result = cluster.del(getBytesKey(key));
-            } else {
             }
         } else {
             Jedis jedis = getResource();
             try {
                 if (jedis.exists(getBytesKey(key))) {
                     result = jedis.del(getBytesKey(key));
-                    logger.debug("delObject {}", key);
-                } else {
-                    logger.debug("delObject {} not exists", key);
                 }
             } finally {
                 returnResource(jedis);
             }
         }
+        logger.debug("delObject {}", key);
         return result;
     }
 
@@ -945,6 +953,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("delKeysLike {}", likekey);
         return result;
     }
 
@@ -971,6 +980,7 @@ public class JedisUtils {
                 returnResource(jedis);
             }
         }
+        logger.debug("delAll");
         return result;
     }
 
@@ -1052,16 +1062,7 @@ public class JedisUtils {
      * 获取资源
      */
     private static Jedis getResource() {
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            logger.debug("getResource.{}", jedis);
-        } catch (JedisException e) {
-            logger.warn("getResource.{}", e);
-            returnResource(jedis);
-            throw e;
-        }
-        return jedis;
+        return jedisPool.getResource();
     }
 
     /**
