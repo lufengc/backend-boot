@@ -35,7 +35,7 @@ public class DruidProperties {
 
     private Monitor monitor;
 
-    public class Monitor {
+    public static class Monitor {
         private String allow;
         private String deny;
         private String loginUsername;
