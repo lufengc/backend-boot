@@ -187,10 +187,4 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         }
         return ids.length();
     }
-
-
-    @Override
-    public void dataLoad() {
-        System.out.println("23132312412412412412412");
-    }
 }

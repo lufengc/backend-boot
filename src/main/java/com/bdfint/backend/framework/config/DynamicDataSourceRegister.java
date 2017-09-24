@@ -45,10 +45,10 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
 
     @Override
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
-        Map<Object, Object> targetDataSources = new HashMap<Object, Object>();
+        Map<Object, Object> targetDataSources = new HashMap<>();
         // 将主数据源添加到更多数据源中
-        targetDataSources.put("dataSource", defaultDataSource);
-        DynamicDataSource.dataSourceIds.add("dataSource");
+        targetDataSources.put("datasource", defaultDataSource);
+        DynamicDataSource.dataSourceIds.add("datasource");
         // 添加更多数据源
         targetDataSources.putAll(customDataSources);
         DynamicDataSource.dataSourceIds.addAll(customDataSources.keySet());
@@ -60,7 +60,7 @@ public class DynamicDataSourceRegister implements ImportBeanDefinitionRegistrar,
         MutablePropertyValues mpv = beanDefinition.getPropertyValues();
         mpv.addPropertyValue("defaultTargetDataSource", defaultDataSource);
         mpv.addPropertyValue("targetDataSources", targetDataSources);
-        registry.registerBeanDefinition("dataSource", beanDefinition);
+        registry.registerBeanDefinition("datasource", beanDefinition);
 
         logger.info("Dynamic DataSource Registry");
     }

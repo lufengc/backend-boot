@@ -74,6 +74,4 @@ public interface UserService extends BaseService<User> {
      */
     int initPassword(String ids, String password) throws Exception;
 
-
-    void dataLoad();
 }

@@ -5,7 +5,7 @@ package com.bdfint.backend.modules.sys.service;
 
 
 import com.bdfint.backend.framework.common.BaseService;
-import com.bdfint.backend.modules.sys.bean.Area;
+import com.bdfint.backend.modules.sys.bean.TArea;
 
 /**
  * 区域Service
@@ -13,7 +13,7 @@ import com.bdfint.backend.modules.sys.bean.Area;
  * @author fengcheng
  * @version 2016/7/28
  */
-public interface AreaService extends BaseService<Area> {
+public interface TAreaService extends BaseService<TArea> {
 
     void updateData() throws Exception;
 }

@@ -4,7 +4,8 @@
 
 package com.bdfint.backend;
 
-import com.bdfint.backend.modules.sys.service.UserService;
+import com.bdfint.backend.modules.sys.service.AreaService;
+import com.bdfint.backend.modules.sys.service.TAreaService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,10 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class DataLoadTest extends BaseTest {
 
     @Autowired
-    private UserService userService;
+    private AreaService areaService;
+    @Autowired
+    private TAreaService tAreaService;
 
     @Test
-    public void dataLoad() {
-        userService.dataLoad();
+    public void testDynamicDatasource() throws Exception {
+        areaService.updateData();
+        tAreaService.updateData();
     }
 }

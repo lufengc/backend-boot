@@ -39,7 +39,6 @@ public class AreaAction extends BaseAction {
     @Autowired
     private AreaService areaService;
 
-
     @ModelAttribute
     protected Area get(@RequestParam(required = false) String id) throws Exception {
         if (StringUtils.isNotEmpty(id)) {
