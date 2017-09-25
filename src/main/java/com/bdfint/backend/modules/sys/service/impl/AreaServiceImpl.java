@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 区域Service
@@ -91,4 +93,24 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
         return 1;
     }
 
+    /**
+     * 根据parentId查询子节点列表
+     *
+     * @param id parentId
+     * @return 子节点集合
+     */
+    @Override
+    public List<Area> findChildList(String id) {
+        List<Area> childList = new ArrayList<>();
+        List<Area> areaList = UserUtils.getAreaList();
+        for (Area area : areaList) {
+            if (Objects.equals(area.getParentId(), id)) {
+                if (findChildList(area.getId()).size() > 0) {
+                    area.setHasChild(true);
+                }
+                childList.add(area);
+            }
+        }
+        return childList;
+    }
 }

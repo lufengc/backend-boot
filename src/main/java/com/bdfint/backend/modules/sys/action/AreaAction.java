@@ -51,9 +51,16 @@ public class AreaAction extends BaseAction {
     @RequestMapping(value = {"list", ""})
     @RequiresPermissions("sys:area:view")
     protected String list(Model model, Area object, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        model.addAttribute("list", UserUtils.getAreaList());
+        model.addAttribute("list", areaService.findChildList("0"));
         return "modules/sys/areaList";
     }
+
+    @ResponseBody
+    @RequestMapping(value = "findChildList")
+    public List<Area> findChildList(String id) {
+        return areaService.findChildList(id);
+    }
+
 
     @RequestMapping(value = "form")
     @RequiresPermissions("sys:area:view")

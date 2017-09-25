@@ -33,7 +33,7 @@ public class LogInterceptor implements HandlerInterceptor {
     private LogService logService;
 
     private static final ThreadLocal<Long> startTimeThreadLocal =
-            new NamedThreadLocal<Long>("ThreadLocal StartTime");
+            new NamedThreadLocal<>("ThreadLocal StartTime");
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,

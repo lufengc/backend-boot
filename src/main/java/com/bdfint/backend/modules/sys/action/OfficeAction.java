@@ -172,7 +172,6 @@ public class OfficeAction extends BaseAction {
                 officeService.save(childOffice);
             }
         }
-
         addMessage(redirectAttributes, "保存机构'" + office.getName() + "'成功");
         return "redirect:" + adminPath + "/sys/office/list";
     }
@@ -189,7 +188,7 @@ public class OfficeAction extends BaseAction {
     public String delete(Model model, Office office, Param param, RedirectAttributes redirectAttributes) throws Exception {
         officeService.delete(office.getId());
         addMessage(redirectAttributes, "删除机构成功");
-        return "redirect:" + adminPath + "/sys/office/list?id=" + office.getId() + "&parentIds=" + office.getParentIds();
+        return "redirect:" + adminPath + "/sys/office/list";
     }
 
     /**

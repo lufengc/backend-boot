@@ -44,7 +44,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 .addPathPatterns(adminPath + "/**")
                 .excludePathPatterns(adminPath + "/")
                 .excludePathPatterns(adminPath + "/login")
-                .excludePathPatterns(adminPath + "/home");
+                .excludePathPatterns(adminPath + "/home")
+                .excludePathPatterns(adminPath + "/sys/log/**");
         super.addInterceptors(registry);
     }
 

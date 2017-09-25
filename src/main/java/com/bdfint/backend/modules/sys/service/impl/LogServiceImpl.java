@@ -176,8 +176,8 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
                         permissionMap.put(p, namePath);
                     }
                 }
-                JedisUtils.setObject(CACHE_PERMISSION_NAME_PATH_MAP, permissionMap, 0);
             }
+            JedisUtils.setObject(CACHE_PERMISSION_NAME_PATH_MAP, permissionMap, 0);
         }
         String MenuNamePath = permissionMap.get(href);
         if (MenuNamePath == null) {

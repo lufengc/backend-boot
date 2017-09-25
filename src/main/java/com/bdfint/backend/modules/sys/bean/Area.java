@@ -22,6 +22,9 @@ public class Area extends TreeEntity<Area> {
     private String type;    // 区域类型（1：国家；2：省份、直辖市；3：地市；4：区县）
 
     @Transient
+    private boolean hasChild;//是否有子节点
+
+    @Transient
     private String parentName;
 
     public Area() {
@@ -54,6 +57,14 @@ public class Area extends TreeEntity<Area> {
 
     public void setParentName(String parentName) {
         this.parentName = parentName;
+    }
+
+    public boolean isHasChild() {
+        return hasChild;
+    }
+
+    public void setHasChild(boolean hasChild) {
+        this.hasChild = hasChild;
     }
 
     @Override
