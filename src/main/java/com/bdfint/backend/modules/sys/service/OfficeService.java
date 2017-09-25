@@ -50,13 +50,4 @@ public interface OfficeService extends BaseService<Office> {
      */
     List<Office> getByParentId(String parentId) throws Exception;
 
-    /**
-     * 保存
-     *
-     * @param object Office
-     * @return 主键id
-     */
-    String save(Office object) throws Exception;
-
-
 }

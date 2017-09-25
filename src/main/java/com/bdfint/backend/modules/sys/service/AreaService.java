@@ -15,5 +15,4 @@ import com.bdfint.backend.modules.sys.bean.Area;
  */
 public interface AreaService extends BaseService<Area> {
 
-    void updateData() throws Exception;
 }

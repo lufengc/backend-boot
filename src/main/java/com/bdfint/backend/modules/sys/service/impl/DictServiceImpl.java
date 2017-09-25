@@ -6,7 +6,6 @@ package com.bdfint.backend.modules.sys.service.impl;
 
 import com.bdfint.backend.framework.cache.JedisUtils;
 import com.bdfint.backend.framework.common.BaseServiceImpl;
-import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.modules.sys.bean.Dict;
 import com.bdfint.backend.modules.sys.service.DictService;
 import com.bdfint.backend.modules.sys.utils.DictUtils;
@@ -36,7 +35,6 @@ public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictServic
             object.preUpdate();
             super.update(object);
         } else {
-            object.setId(Encodes.uuid());
             object.preInsert();
             super.insert(object);
             id = object.getId();

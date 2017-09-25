@@ -18,13 +18,6 @@ import java.util.List;
 public interface MenuService extends BaseService<Menu> {
 
     /**
-     * 保存或更新操作
-     *
-     * @param object Object
-     */
-    String save(Menu object) throws Exception;
-
-    /**
      * 根据角色ID获取权限
      *
      * @param roleId 角色ID

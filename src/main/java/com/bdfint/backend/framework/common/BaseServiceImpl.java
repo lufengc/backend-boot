@@ -4,6 +4,7 @@
 
 package com.bdfint.backend.framework.common;
 
+import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.framework.util.Reflections;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -28,6 +29,25 @@ public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseSe
 
     @Autowired
     protected Mapper<T> mapper;
+
+    /**
+     * 业务数据插入或更新操作
+     * 复杂操作由业务类实现
+     *
+     * @param object T
+     */
+    @Override
+    public String save(T object) throws Exception {
+        String id = object.getId();
+        if (object.getId() != null) {
+            update(object);
+        } else {
+            object.setId(Encodes.uuid());
+            insert(object);
+            id = object.getId();
+        }
+        return id;
+    }
 
     /**
      * 插入

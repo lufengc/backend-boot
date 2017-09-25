@@ -47,7 +47,6 @@ public class LogServiceImpl extends BaseServiceImpl<Log> implements LogService {
 
     static final String CACHE_PERMISSION_NAME_PATH_MAP = "permissionNamePathMap";
 
-    @Override
     public String save(Log object) throws Exception {
         return null;
     }

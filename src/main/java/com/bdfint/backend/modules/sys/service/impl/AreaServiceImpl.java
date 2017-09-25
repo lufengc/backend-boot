@@ -11,7 +11,6 @@ import com.bdfint.backend.modules.sys.bean.Area;
 import com.bdfint.backend.modules.sys.bean.Menu;
 import com.bdfint.backend.modules.sys.mapper.AreaMapper;
 import com.bdfint.backend.modules.sys.service.AreaService;
-import com.bdfint.backend.modules.sys.service.TAreaService;
 import com.bdfint.backend.modules.sys.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,9 +30,6 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
 
     @Autowired
     private AreaMapper areaMapper;
-
-    @Autowired
-    private TAreaService tAreaService;
 
     /**
      * 保存或更新操作
@@ -93,15 +89,6 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
         super.delete(ids);
         UserUtils.removeCache(UserUtils.CACHE_AREA_LIST);
         return 1;
-    }
-
-    @Override
-    @Transactional
-    public void updateData() throws Exception {
-        Area area = new Area();
-        area.setId("1");
-        area.setName("中国");
-        super.update(area);
     }
 
 }

@@ -2,13 +2,14 @@
  * Copyright (c) 2017. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 
-package com.bdfint.backend.modules.sys.service.impl;
+package com.bdfint.backend.service.impl;
 
-import com.bdfint.backend.framework.common.BaseServiceImpl;
 import com.bdfint.backend.framework.config.TargetDataSource;
+import com.bdfint.backend.modules.sys.bean.Area;
 import com.bdfint.backend.modules.sys.bean.TArea;
+import com.bdfint.backend.modules.sys.mapper.AreaMapper;
 import com.bdfint.backend.modules.sys.mapper.TAreaMapper;
-import com.bdfint.backend.modules.sys.service.TAreaService;
+import com.bdfint.backend.service.TAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,23 +21,30 @@ import org.springframework.transaction.annotation.Transactional;
  * @version 2016/7/28
  */
 @Service
-public class TAreaServiceImpl extends BaseServiceImpl<TArea> implements TAreaService {
+public class TAreaServiceImpl implements TAreaService {
 
     @Autowired
     private TAreaMapper tAreaMapper;
+    @Autowired
+    private AreaMapper AreaMapper;
+
+    @Override
+    @Transactional
+    public void updateData() throws Exception {
+        Area tArea = new Area();
+        tArea.setId("1");
+        tArea.setName("中国3");
+        AreaMapper.updateByPrimaryKeySelective(tArea);
+    }
 
     @Override
     @Transactional
     @TargetDataSource("ds1")
-    public void updateData() throws Exception {
+    public void updateDatads() throws Exception {
         TArea tArea = new TArea();
         tArea.setId("1");
-        tArea.setName("中国ds1");
+        tArea.setName("中国ds3");
         tAreaMapper.updateByPrimaryKeySelective(tArea);
     }
 
-    @Override
-    public String save(TArea object) throws Exception {
-        return null;
-    }
 }
