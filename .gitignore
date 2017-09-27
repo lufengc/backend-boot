@@ -1,5 +1,8 @@
 target/
 logs/
+out/
+src/main/webapp/uploads/
+
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -16,10 +19,4 @@ logs/
 *.iml
 *.ipr
 
-### NetBeans ###
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-.nb-gradle/
+
