@@ -1061,14 +1061,14 @@ public class JedisUtils {
     /**
      * 获取资源
      */
-    private static Jedis getResource() {
+    public static Jedis getResource() {
         return jedisPool.getResource();
     }
 
     /**
      * 释放资源
      */
-    private static void returnResource(Jedis jedis) {
+    public static void returnResource(Jedis jedis) {
         if (jedis != null) {
             jedis.close();
         }

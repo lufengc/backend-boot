@@ -4,6 +4,8 @@
 
 package com.bdfint.backend.modules.cms.action.front;
 
+import com.bdfint.backend.framework.cache.JedisUtils;
+import com.bdfint.backend.framework.cache.RedisMsgPubSubListener;
 import com.bdfint.backend.framework.common.BaseAction;
 import com.bdfint.backend.framework.common.BaseEntity;
 import com.bdfint.backend.framework.util.UserAgentUtils;
@@ -19,7 +21,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import redis.clients.jedis.Jedis;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +44,35 @@ public class FrontAction extends BaseAction {
     private ArticleService articleService;
     @Autowired
     private GuestbookService guestbookService;
+
+
+    @ResponseBody
+    @RequestMapping("publish")
+    public void publish(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Jedis jedis = JedisUtils.getResource();
+        jedis.publish("redisChatTest", "1111111");
+        jedis.publish("redisChatTest1", "咦咦咦咦咦");
+        logger.info("testPublish  1");
+        Thread.sleep(5000);
+        jedis.publish("redisChatTest", "2222222");
+        jedis.publish("redisChatTest1", "鹅鹅鹅鹅鹅鹅");
+        logger.info("testPublish  2");
+        Thread.sleep(5000);
+        jedis.publish("redisChatTest", "33333333");
+        jedis.publish("redisChatTest1", "哈哈哈哈哈哈");
+        logger.info("testPublish  3");
+    }
+
+    @ResponseBody
+    @RequestMapping("subscribe")
+    public void subscribe(Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Jedis jedis = JedisUtils.getResource();
+        RedisMsgPubSubListener listener = new RedisMsgPubSubListener();
+        jedis.psubscribe(listener, "redisChatTest*");
+//        jedis.subscribe(listener, "redisChatTest1");
+        logger.info("testSubscribe1");
+    }
+
 
     /**
      * 网站首页
