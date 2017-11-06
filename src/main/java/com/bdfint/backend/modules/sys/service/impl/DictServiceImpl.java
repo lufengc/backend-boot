@@ -6,6 +6,7 @@ package com.bdfint.backend.modules.sys.service.impl;
 
 import com.bdfint.backend.framework.cache.JedisUtils;
 import com.bdfint.backend.framework.common.BaseServiceImpl;
+import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.sys.bean.Dict;
 import com.bdfint.backend.modules.sys.service.DictService;
 import com.bdfint.backend.modules.sys.utils.DictUtils;
@@ -31,7 +32,7 @@ public class DictServiceImpl extends BaseServiceImpl<Dict> implements DictServic
     @Transactional
     public String save(Dict object) throws Exception {
         String id = object.getId();
-        if (object.getId() != null) {
+        if (StringUtils.isNotEmpty(object.getId())) {
             object.preUpdate();
             super.update(object);
         } else {

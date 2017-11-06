@@ -76,7 +76,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
     @Override
     @Transactional
     public String save(Role object) throws Exception {
-        if (object.getId() != null) {
+        if (StringUtils.isNotEmpty(object.getId())) {
             object.preUpdate();
             super.update(object);
             //删除角色权限关联表

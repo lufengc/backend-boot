@@ -6,6 +6,7 @@ package com.bdfint.backend.framework.common;
 
 import com.bdfint.backend.framework.util.Encodes;
 import com.bdfint.backend.framework.util.Reflections;
+import com.bdfint.backend.framework.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
@@ -39,7 +40,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity<T>> implements BaseSe
     @Override
     public String save(T object) throws Exception {
         String id = object.getId();
-        if (object.getId() != null) {
+        if (StringUtils.isNotEmpty(object.getId())) {
             update(object);
         } else {
             object.setId(Encodes.uuid());

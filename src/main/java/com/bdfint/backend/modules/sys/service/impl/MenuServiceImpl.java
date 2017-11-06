@@ -7,6 +7,7 @@ package com.bdfint.backend.modules.sys.service.impl;
 import com.bdfint.backend.framework.cache.JedisUtils;
 import com.bdfint.backend.framework.common.BaseServiceImpl;
 import com.bdfint.backend.framework.util.Encodes;
+import com.bdfint.backend.framework.util.StringUtils;
 import com.bdfint.backend.modules.sys.bean.Menu;
 import com.bdfint.backend.modules.sys.mapper.MenuMapper;
 import com.bdfint.backend.modules.sys.service.MenuService;
@@ -96,7 +97,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
         } else {
             object.setParentIds(Menu.getRootId());
         }
-        if (object.getId() != null) {
+        if (StringUtils.isNotEmpty(object.getId())) {
             object.preUpdate();
             super.update(object);
             // 更新子节点parentIds

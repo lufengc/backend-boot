@@ -141,7 +141,7 @@ public class GenUtils {
             // 创建者、更新者
             else if (StringUtils.startsWithIgnoreCase(column.getName(), "create_by")
                     || StringUtils.startsWithIgnoreCase(column.getName(), "update_by")) {
-                column.setJavaField(column.getJavaField() + ".id");
+                column.setJavaField(column.getJavaField());
                 column.setShowType("userselect");
             }
             // 创建时间、更新时间

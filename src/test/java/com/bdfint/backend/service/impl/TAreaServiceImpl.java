@@ -33,7 +33,7 @@ public class TAreaServiceImpl implements TAreaService {
     public void updateData() throws Exception {
         Area tArea = new Area();
         tArea.setId("1");
-        tArea.setName("中国3");
+        tArea.setName("中国0");
         AreaMapper.updateByPrimaryKeySelective(tArea);
     }
 
@@ -43,7 +43,7 @@ public class TAreaServiceImpl implements TAreaService {
     public void updateDatads() throws Exception {
         TArea tArea = new TArea();
         tArea.setId("1");
-        tArea.setName("中国ds3");
+        tArea.setName("中国ds1");
         tAreaMapper.updateByPrimaryKeySelective(tArea);
     }
 
