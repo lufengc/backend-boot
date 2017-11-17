@@ -34,7 +34,7 @@ public class ${ClassName}ServiceImpl extends BaseServiceImpl<${ClassName}> imple
     @Override
     @Transactional
 	public String save(${ClassName} object) throws Exception {
-        if (StringUtils.isEmpty(object.getId())) {
+        if (StringUtils.isNotEmpty(object.getId())) {
             object.preUpdate();
             super.update(object);
         } else {
