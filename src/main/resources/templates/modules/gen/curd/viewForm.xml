@@ -44,7 +44,7 @@
 		<form:hidden path="id"/>
 		<sys:message content="${r"${message}"}"/>		
 		<#list table.columnList as c>
-			<#if c.isEdit?? && c.isEdit == "1" && (c.isNotBaseField || c.simpleJavaField == 'remarks')>
+			<#if c.isEdit?? && c.isEdit == "1" && (c.isNotBaseField)>
 		<div class="control-group">
 			<label class="control-label"><#if c.isNull != "1"><span style="color: red; ">*</span></#if>${c.comments}：</label>
 			<div class="controls">
