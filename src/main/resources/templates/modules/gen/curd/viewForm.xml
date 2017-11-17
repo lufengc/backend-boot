@@ -49,7 +49,7 @@
 			<label class="control-label"><#if c.isNull != "1"><span style="color: red; ">*</span></#if>${c.comments}：</label>
 			<div class="controls">
 			<#if c.showType == "input">
-				<form:input path="${c.javaFieldId}" htmlEscape="false"<#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> class="form-control<#if c.isNull != "1"> required</#if><#if c.javaType == "Long" || c.javaType == "Integer"> digits</#if><#if c.javaType == "Double"> number</#if>"/>
+				<form:input path="${c.javaFieldId}" htmlEscape="false"<#if c.dataLength != "0"> maxlength="${c.dataLength}"</#if> class="form-control w-80<#if c.isNull != "1"> required</#if><#if c.javaType == "Long" || c.javaType == "Integer"> digits</#if><#if c.javaType == "Double"> number</#if>"/>
 			</#if>
 			</div>
 		</div>

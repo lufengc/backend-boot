@@ -8280,3 +8280,7 @@ input[type=checkbox], input[type=radio] {
 .checkboxdiv span {
     padding-right: 8px;
 }
+
+.w-80 {
+    width: 80%;
+}
