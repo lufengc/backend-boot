@@ -37,7 +37,7 @@ import tk.mybatis.mapper.entity.Example;
  */
 @Controller
 @RequestMapping(value = "${r"${adminPath}"}/${urlPrefix}")
-public class ${ClassName}Action extends BaseAction<${ClassName}> {
+public class ${ClassName}Action extends BaseAction {
 
 	@Autowired
 	private ${ClassName}Service ${className}Service;
@@ -45,7 +45,6 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
     /**
      * 数据绑定
      */
-	@Override
 	@ModelAttribute
 	public ${ClassName} get(@RequestParam(required=false) String id) throws Exception {
 		${ClassName} entity = null;
@@ -63,7 +62,6 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      *
      * @return view
      */
-    @Override
 	@RequestMapping(value = {"list", ""})
 	@RequiresPermissions("${permissionPrefix}:view")
 	public String list(Model model, ${ClassName} object, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -78,7 +76,6 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      *
      * @return String
      */
-    @Override
 	@RequestMapping(value = "form")
 	@RequiresPermissions("${permissionPrefix}:view")
 	public String form(Model model, ${ClassName} object) throws Exception {
@@ -90,7 +87,6 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      *
      * @return String
      */
-	@Override
 	@RequestMapping(value = "save")
 	@RequiresPermissions("${permissionPrefix}:edit")
 	public String save(Model model, ${ClassName} object, RedirectAttributes redirectAttributes) throws Exception {
@@ -107,7 +103,6 @@ public class ${ClassName}Action extends BaseAction<${ClassName}> {
      *
      * @return String
      */
-    @Override
 	@RequestMapping(value = "delete")
 	@RequiresPermissions("${permissionPrefix}:edit")
 	public String delete(Model model, ${ClassName} object, Param param, RedirectAttributes redirectAttributes) throws Exception {
