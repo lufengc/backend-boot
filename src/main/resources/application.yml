@@ -8,7 +8,7 @@ logging:
   file: logs/backend-boot.log
   level:
     root: info
-    com.bdfint.backend: debug
+    com.bdfint.backend: info
 
 custom.datasource:
   names: ds1,ds2
