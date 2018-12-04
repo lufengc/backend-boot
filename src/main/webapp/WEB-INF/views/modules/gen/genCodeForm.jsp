@@ -62,7 +62,8 @@
             <div class="control-group">
                 <label class="control-label">生成包路径:</label>
                 <div class="controls">
-                    <input type="text" name="packageName" class="form-control required" value="com.bdfint.backend.modules">
+                    <input type="text" name="packageName" class="form-control required"
+                           value="com.cheng.backend.modules">
                     <span class="help-inline">建议模块包：com.platform.modules</span>
                 </div>
             </div>

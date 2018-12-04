@@ -14,28 +14,28 @@
     <function>
         <description>获取管理路径</description>
         <name>getAdminPath</name>
-        <function-class>com.bdfint.backend.framework.common.Global</function-class>
+        <function-class>com.cheng.backend.framework.common.Global</function-class>
         <function-signature>java.lang.String getAdminPath()</function-signature>
         <example>${fns:getAdminPath()}</example>
     </function>
     <function>
         <description>获取网站路径</description>
         <name>getFrontPath</name>
-        <function-class>com.bdfint.backend.framework.common.Global</function-class>
+        <function-class>com.cheng.backend.framework.common.Global</function-class>
         <function-signature>java.lang.String getFrontPath()</function-signature>
         <example>${fns:getFrontPath()}</example>
     </function>
     <function>
         <description>获取文件服务器路径</description>
         <name>getFileAccessPath</name>
-        <function-class>com.bdfint.backend.framework.common.Global</function-class>
+        <function-class>com.cheng.backend.framework.common.Global</function-class>
         <function-signature>java.lang.String getFileAccessPath()</function-signature>
         <example>${fns:getFileAccessPath()}</example>
     </function>
     <function>
         <description>获取网站URL后缀</description>
         <name>getUrlSuffix</name>
-        <function-class>com.bdfint.backend.framework.common.Global</function-class>
+        <function-class>com.cheng.backend.framework.common.Global</function-class>
         <function-signature>java.lang.String getUrlSuffix()</function-signature>
         <example>${fns:getUrlSuffix()}</example>
     </function>
@@ -44,23 +44,23 @@
     <function>
         <description>根据ID获取用户信息</description>
         <name>getUserById</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.UserUtils</function-class>
-        <function-signature>com.bdfint.backend.modules.sys.bean.User get(java.lang.String)</function-signature>
+        <function-class>com.cheng.backend.modules.sys.utils.UserUtils</function-class>
+        <function-signature>com.cheng.backend.modules.sys.bean.User get(java.lang.String)</function-signature>
         <example>${fns:getUser(id)}</example>
     </function>
 
     <function>
         <description>获取当前用户对象</description>
         <name>getUser</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.UserUtils</function-class>
-        <function-signature>com.bdfint.backend.modules.sys.bean.User getUser()</function-signature>
+        <function-class>com.cheng.backend.modules.sys.utils.UserUtils</function-class>
+        <function-signature>com.cheng.backend.modules.sys.bean.User getUser()</function-signature>
         <example>${fns:getUser()}</example>
     </function>
 
     <function>
         <description>获取当前用户的角色列表</description>
         <name>getRoleList</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.UserUtils</function-class>
+        <function-class>com.cheng.backend.modules.sys.utils.UserUtils</function-class>
         <function-signature>java.util.List getRoleList()</function-signature>
         <example>${fns:getRoleList()}</example>
     </function>
@@ -68,7 +68,7 @@
     <function>
         <description>获取当前用户授权菜单</description>
         <name>getMenuList</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.UserUtils</function-class>
+        <function-class>com.cheng.backend.modules.sys.utils.UserUtils</function-class>
         <function-signature>java.util.List getMenuList()</function-signature>
         <example>${fns:getMenuList()}</example>
     </function>
@@ -77,7 +77,7 @@
     <function>
         <description>获取字典标签</description>
         <name>getDictLabel</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.DictUtils</function-class>
+        <function-class>com.cheng.backend.modules.sys.utils.DictUtils</function-class>
         <function-signature>java.lang.String getDictLabel(java.lang.String, java.lang.String, java.lang.String)</function-signature>
         <example>${fns:getDictLabel(value, type, defaultValue)}</example>
     </function>
@@ -85,7 +85,7 @@
     <function>
         <description>获取字典标签(多个)</description>
         <name>getDictLabels</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.DictUtils</function-class>
+        <function-class>com.cheng.backend.modules.sys.utils.DictUtils</function-class>
         <function-signature>java.lang.String getDictLabels(java.lang.String, java.lang.String, java.lang.String)</function-signature>
         <example>${fns:getDictLabels(values, type, defaultValue)}</example>
     </function>
@@ -93,7 +93,7 @@
     <function>
         <description>获取字典值</description>
         <name>getDictValue</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.DictUtils</function-class>
+        <function-class>com.cheng.backend.modules.sys.utils.DictUtils</function-class>
         <function-signature>java.lang.String getDictValue(java.lang.String, java.lang.String, java.lang.String)</function-signature>
         <example>${fns:getDictValue(label, type, defaultValue)}</example>
     </function>
@@ -101,7 +101,7 @@
     <function>
         <description>获取字典对象列表</description>
         <name>getDictList</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.DictUtils</function-class>
+        <function-class>com.cheng.backend.modules.sys.utils.DictUtils</function-class>
         <function-signature>java.util.List getDictList(java.lang.String)</function-signature>
         <example>${fns:getDictList(type)}</example>
     </function>
@@ -109,7 +109,7 @@
     <function>
         <description>获取字典对象列表</description>
         <name>getDictListJson</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.DictUtils</function-class>
+        <function-class>com.cheng.backend.modules.sys.utils.DictUtils</function-class>
         <function-signature>java.lang.String getDictListJson(java.lang.String)</function-signature>
         <example>${fns:getDictListJson(type)}</example>
     </function>
@@ -117,7 +117,7 @@
     <function>
         <description>获取字典对象MAP</description>
         <name>getDictMapJson</name>
-        <function-class>com.bdfint.backend.modules.sys.utils.DictUtils</function-class>
+        <function-class>com.cheng.backend.modules.sys.utils.DictUtils</function-class>
         <function-signature>java.lang.String getDictMapJson()</function-signature>
         <example>${fns:getDictMapJson()}</example>
     </function>
@@ -126,28 +126,28 @@
     <function>
         <description>URL编码</description>
         <name>urlEncode</name>
-        <function-class>com.bdfint.backend.framework.util.Encodes</function-class>
+        <function-class>com.cheng.backend.framework.util.Encodes</function-class>
         <function-signature>java.lang.String urlEncode(java.lang.String)</function-signature>
         <example>${fns:urlEncode(part)}</example>
     </function>
     <function>
         <description>URL解码</description>
         <name>urlDecode</name>
-        <function-class>com.bdfint.backend.framework.util.Encodes</function-class>
+        <function-class>com.cheng.backend.framework.util.Encodes</function-class>
         <function-signature>java.lang.String urlDecode(java.lang.String)</function-signature>
         <example>${fns:urlDecode(part)}</example>
     </function>
     <function>
         <description>HTML编码</description>
         <name>escapeHtml</name>
-        <function-class>com.bdfint.backend.framework.util.Encodes</function-class>
+        <function-class>com.cheng.backend.framework.util.Encodes</function-class>
         <function-signature>java.lang.String escapeHtml(java.lang.String)</function-signature>
         <example>${fns:escapeHtml(html)}</example>
     </function>
     <function>
         <description>HTML解码</description>
         <name>unescapeHtml</name>
-        <function-class>com.bdfint.backend.framework.util.Encodes</function-class>
+        <function-class>com.cheng.backend.framework.util.Encodes</function-class>
         <function-signature>java.lang.String unescapeHtml(java.lang.String)</function-signature>
         <example>${fns:unescapeHtml(html)}</example>
     </function>
@@ -177,21 +177,21 @@
     <function>
         <description>缩写字符串，超过最大宽度用“...”表示</description>
         <name>abbr</name>
-        <function-class>com.bdfint.backend.framework.util.StringUtils</function-class>
+        <function-class>com.cheng.backend.framework.util.StringUtils</function-class>
         <function-signature>java.lang.String abbr(java.lang.String, int)</function-signature>
         <example>${fns:abbr(str,length)}</example>
     </function>
     <function>
         <description>替换掉HTML标签</description>
         <name>replaceHtml</name>
-        <function-class>com.bdfint.backend.framework.util.StringUtils</function-class>
+        <function-class>com.cheng.backend.framework.util.StringUtils</function-class>
         <function-signature>java.lang.String replaceHtml(java.lang.String)</function-signature>
         <example>${fns:replaceHtml(html)}</example>
     </function>
     <function>
         <description>转换为JS获取对象值，生成三目运算返回结果。</description>
         <name>jsGetVal</name>
-        <function-class>com.bdfint.backend.framework.util.StringUtils</function-class>
+        <function-class>com.cheng.backend.framework.util.StringUtils</function-class>
         <function-signature>java.lang.String jsGetVal(java.lang.String)</function-signature>
         <example>${fns:jsGetVal('row.user.id')} 返回：!row?'':!row.user?'':!row.user.id?'':row.user.id</example>
     </function>
@@ -200,14 +200,14 @@
     <function>
         <description>获取当前日期</description>
         <name>getDate</name>
-        <function-class>com.bdfint.backend.framework.util.DateUtils</function-class>
+        <function-class>com.cheng.backend.framework.util.DateUtils</function-class>
         <function-signature>java.lang.String getDate(java.lang.String)</function-signature>
         <example>${fns:getDate(pattern)}</example>
     </function>
     <function>
         <description>获取过去的天数</description>
         <name>pastDays</name>
-        <function-class>com.bdfint.backend.framework.util.DateUtils</function-class>
+        <function-class>com.cheng.backend.framework.util.DateUtils</function-class>
         <function-signature>long pastDays(java.util.Date)</function-signature>
         <example>${fns:pastDays(date)}</example>
     </function>
@@ -216,7 +216,7 @@
     <function>
         <description>对象转换JSON字符串</description>
         <name>toJson</name>
-        <function-class>com.bdfint.backend.framework.mapper.JsonMapper</function-class>
+        <function-class>com.cheng.backend.framework.mapper.JsonMapper</function-class>
         <function-signature>java.lang.String toJsonString(java.lang.Object)</function-signature>
         <example>${fns:toJson(object)}</example>
     </function>

@@ -5,7 +5,7 @@
 	<fileName>${ClassName}.java</fileName>
 	<content><![CDATA[
 /*
- * Copyright &copy; <a href="http://www.bdfint.com">bdfint</a> All rights reserved.
+ * Copyright &copy; <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>;
 
@@ -13,7 +13,7 @@ package ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleNa
 import ${i};
 </#list>
 
-import com.bdfint.backend.framework.common.DataEntity;
+import com.cheng.backend.framework.common.DataEntity;
 
 /**
  * ${functionName}Entity

@@ -5,7 +5,7 @@
 	<fileName>${ClassName}ServiceImpl.java</fileName>
 	<content><![CDATA[
 /*
- * Copyright &copy; <a href="http://www.bdfint.com">bdfint</a> All rights reserved.
+ * Copyright &copy; <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package ${packageName}.${moduleName}.service.impl<#if subModuleName != "">.${subModuleName}</#if>;
 
@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bdfint.backend.framework.common.BaseServiceImpl;
-import com.bdfint.backend.framework.util.StringUtils;
+import com.cheng.backend.framework.common.BaseServiceImpl;
+import com.cheng.backend.framework.util.StringUtils;
 import ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Service;
 import ${packageName}.${moduleName}.mapper<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Mapper;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2018. <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cheng.backend.modules.sys.mapper.OfficeMapper">
+
+    <sql id="Base_Column_List">
+        id, parent_id, parent_ids, name, sort, area_id, code, type, grade, address, zip_code,
+        master, phone, fax, email, USEABLE, PRIMARY_PERSON, DEPUTY_PERSON, create_by, create_date,
+        update_by, update_date, remarks, del_flag
+    </sql>
+
+    <delete id="deleteRoleOfficeByOfficeIds">
+        DELETE FROM sys_role_office
+        WHERE office_id IN
+        <foreach collection="array" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="getOfficeByUserId" resultType="Office">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM sys_office a
+        WHERE a.id = #{userId}
+        ORDER BY a.code
+    </select>
+
+</mapper>

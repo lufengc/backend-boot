@@ -44,7 +44,7 @@
 
     <tag>
         <name>hasAnyPermissions</name>
-        <tag-class>com.bdfint.backend.framework.security.shiro.HasAnyPermissionsTag</tag-class>
+        <tag-class>com.cheng.backend.framework.security.shiro.HasAnyPermissionsTag</tag-class>
         <body-content>JSP</body-content>
         <description>Displays body content only if the current user has one of the specified permissions from a
             comma-separated list of permission names.

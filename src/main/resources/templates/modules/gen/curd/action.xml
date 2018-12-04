@@ -5,14 +5,14 @@
 	<fileName>${ClassName}Action.java</fileName>
 	<content><![CDATA[
 /*
- * Copyright &copy; <a href="http://www.bdfint.com">bdfint</a> All rights reserved.
+ * Copyright &copy; <a href="http://www.lufengc.com">lufengc</a> All rights reserved.
  */
 package ${packageName}.${moduleName}.web<#if subModuleName != "">.${subModuleName}</#if>;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bdfint.backend.framework.common.Param;
+import com.cheng.backend.framework.common.Param;
 import com.github.pagehelper.PageInfo;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bdfint.backend.framework.util.StringUtils;
-import com.bdfint.backend.framework.common.BaseAction;
+import com.cheng.backend.framework.util.StringUtils;
+import com.cheng.backend.framework.common.BaseAction;
 import ${packageName}.${moduleName}.bean<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
 import ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Service;
 import tk.mybatis.mapper.entity.Example;
