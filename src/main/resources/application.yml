@@ -14,13 +14,13 @@ custom.datasource:
   names: ds1,ds2
   ds1.type: com.alibaba.druid.pool.DruidDataSource
   ds1.driverClassName: com.mysql.jdbc.Driver
-  ds1.url: jdbc:mysql://10.82.12.225:3306/zlgx_dev?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+  ds1.url: jdbc:mysql://localhost:3307/zlgx_dev?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
   ds1.username: root
   ds1.password: cheng@@
 
   ds2.type: com.alibaba.druid.pool.DruidDataSource
   ds2.driverClassName: com.mysql.jdbc.Driver
-  ds2.url: jdbc:mysql://10.82.12.225:3306/zlgx_dev?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+  ds2.url: jdbc:mysql://localhost:3308/zlgx_dev?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
   ds2.username: root
   ds2.password: cheng@@
 
